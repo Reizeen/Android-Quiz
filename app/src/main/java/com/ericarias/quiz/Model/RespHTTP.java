@@ -8,6 +8,11 @@ public class RespHTTP {
     private String resp;
     private String desc;
 
+    public RespHTTP(String resp, String desc) {
+        this.resp = resp;
+        this.desc = desc;
+    }
+
     public String getResp() {
         return resp;
     }
