@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.animation.ValueAnimator;
 import android.os.Bundle;
 import android.view.animation.LinearInterpolator;
+import android.webkit.WebView;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.ericarias.quiz.R;
@@ -14,6 +16,8 @@ public class Login extends AppCompatActivity {
 
     private ImageView fondoLogin;
     private ImageView fondoLoginDos;
+    private EditText textUser;
+    private EditText textPass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,8 +28,14 @@ public class Login extends AppCompatActivity {
         fondoLoginDos = findViewById(R.id.fondoLoginDos);
         animacionFondo();
 
+        textUser = findViewById(R.id.userText);
+        textPass = findViewById(R.id.passText);
+
     }
 
+    /**
+     * Animando el fondo de la actividad.
+     */
     public void animacionFondo(){
         // Object Animator (Animacion)
         ValueAnimator animator = ValueAnimator.ofFloat(0, 1);
