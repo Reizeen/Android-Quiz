@@ -5,19 +5,19 @@ package com.ericarias.quiz.Model;
  */
 public class RespHTTP {
 
-    private String resp;
+    private boolean resp;
     private String desc;
 
-    public RespHTTP(String resp, String desc) {
+    public RespHTTP(boolean resp, String desc) {
         this.resp = resp;
         this.desc = desc;
     }
 
-    public String getResp() {
+    public boolean getResp() {
         return resp;
     }
 
-    public void setResp(String resp) {
+    public void setResp(boolean resp) {
         this.resp = resp;
     }
 

@@ -6,12 +6,12 @@ public class Usuario {
 
     @SerializedName("name")
     private String name;
-    private String emial;
+    private String email;
     private String pass;
 
-    public Usuario(String name, String emial, String pass) {
+    public Usuario(String name, String email, String pass) {
         this.name = name;
-        this.emial = emial;
+        this.email = email;
         this.pass = pass;
     }
 
@@ -29,11 +29,11 @@ public class Usuario {
     }
 
     public String getEmial() {
-        return emial;
+        return email;
     }
 
     public void setEmial(String emial) {
-        this.emial = emial;
+        this.email = emial;
     }
 
     public String getPass() {

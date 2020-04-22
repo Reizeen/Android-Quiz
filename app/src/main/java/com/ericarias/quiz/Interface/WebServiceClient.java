@@ -11,4 +11,7 @@ public interface WebServiceClient {
 
     @POST("signin")
     Call<RespHTTP> loginUser(@Body Usuario usuario);
+
+    @POST("signup")
+    Call<RespHTTP> registerUser(@Body Usuario usuario);
 }

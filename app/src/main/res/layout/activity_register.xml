@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#81e6f8"
+    tools:context=".Controller.Register">
+
+    <ImageView
+        android:id="@+id/fondoRegister"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/fondo_dibujos_dos"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <ImageView
+        android:id="@+id/fondoRegisterDos"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/fondo_dibujos_dos"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:alpha="0.7"
+        android:src="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/titleRegister"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:layout_marginTop="70dp"
+        android:textAlignment="center"
+        android:fontFamily="casual"
+        android:text="Registro"
+        android:textColor="@color/colorAccent"
+        android:textSize="70dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/textUserRegister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:backgroundTint="@android:color/white"
+        android:hint="Usuario"
+        android:inputType="text"
+        android:textColor="@android:color/white"
+        android:textColorHint="#757575"
+        android:layout_marginTop="10dp"
+        android:textSize="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleRegister" />
+
+    <EditText
+        android:id="@+id/textEmailRegister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginRight="50dp"
+        android:backgroundTint="@android:color/white"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:textColor="@android:color/white"
+        android:textColorHint="#757575"
+        android:textSize="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textUserRegister" />
+
+    <EditText
+        android:id="@+id/textPassRegister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginRight="50dp"
+        android:backgroundTint="@android:color/white"
+        android:hint="Contraseña"
+        android:inputType="textPassword"
+        android:textColor="@android:color/white"
+        android:textColorHint="#757575"
+        android:textSize="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textEmailRegister" />
+
+    <TextView
+        android:id="@+id/textErrorRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="1dp"
+        android:text="Usuario ya registrado"
+        android:textColor="@color/colorAccent"
+        android:background="@drawable/fondo_error"
+        android:layout_marginTop="14dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textPassRegister" />
+
+    <Button
+        android:id="@+id/btnRegister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="Registrarse"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:background="@drawable/btn_blue_dark"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="@+id/fondoLogin"
+        app:layout_constraintTop_toBottomOf="@+id/textPassRegister"
+        android:onClick="onClickRegister"/>
+
+    <Button
+        android:id="@+id/btnGoLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/btn_blue"
+        android:text="Volver"
+        android:textColor="@android:color/white"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnRegister"
+        android:onClick="onClickGoLogin"/>
+
+    <ProgressBar
+        android:id="@+id/register_progress"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_marginBottom="100dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/fondoRegister"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="@+id/fondoRegister"
+        app:layout_constraintTop_toTopOf="@+id/fondoRegister" />
+
+    <TextView
+        android:id="@+id/textRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Registrando"
+        android:textSize="20dp"
+        android:visibility="gone"
+        android:textColor="@color/colorAccent"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/fondoRegister"
+        app:layout_constraintTop_toBottomOf="@+id/register_progress" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,7 +3,6 @@ package com.ericarias.quiz.Controller;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.animation.ValueAnimator;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,6 +10,7 @@ import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +20,8 @@ import com.ericarias.quiz.Model.Usuario;
 import com.ericarias.quiz.Model.Utilities;
 import com.ericarias.quiz.R;
 
+import org.w3c.dom.Text;
+
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
@@ -28,44 +30,43 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class Login extends AppCompatActivity {
+public class Register extends AppCompatActivity {
 
-    private ImageView fondoLogin;
-    private ImageView fondoLoginDos;
-    private TextView titleLogin;
+    private ImageView fondoRegister;
+    private ImageView fondoRegisterDos;
+    private TextView titleRegister;
     private EditText textUser;
+    private EditText textEmail;
     private EditText textPass;
-    private TextView passReco;
-    private TextView textLogin;
     private TextView textError;
-    private Button btnLogin;
-    private Button btnGoRegister;
-
+    private Button btnRegister;
+    private Button btnGoLogin;
+    private View mProgressView;
+    private TextView textRegister;
     private Retrofit retrofit;
     private HttpLoggingInterceptor logInterceptor;
     private OkHttpClient.Builder httpClientBuilder;
-    private View mProgressView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_register);
 
-        fondoLogin = findViewById(R.id.fondoLogin);
-        fondoLoginDos = findViewById(R.id.fondoLoginDos);
+        fondoRegister = findViewById(R.id.fondoRegister);
+        fondoRegisterDos = findViewById(R.id.fondoRegisterDos);
         animacionFondo();
 
-        titleLogin = findViewById(R.id.titleLogin);
-        textUser = findViewById(R.id.textUserLogin);
-        textPass = findViewById(R.id.textPassLogin);
-        passReco = findViewById(R.id.passReco);
-        textLogin = findViewById(R.id.textLogin);
-        textError = findViewById(R.id.textErrorLogin);
-        btnLogin = findViewById(R.id.btnLogin);
-        btnGoRegister = findViewById(R.id.btnGoRegister);
-        mProgressView = findViewById(R.id.login_progress);
+        titleRegister = findViewById(R.id.titleRegister);
+        textUser = findViewById(R.id.textUserRegister);
+        textEmail = findViewById(R.id.textEmailRegister);
+        textPass = findViewById(R.id.textPassRegister);
+        textError = findViewById(R.id.textErrorRegister);
+        btnRegister = findViewById(R.id.btnRegister);
+        btnGoLogin = findViewById(R.id.btnGoLogin);
+        mProgressView = findViewById(R.id.register_progress);
+        textRegister = findViewById(R.id.textRegister);
     }
-
 
     /**
      * Animando el fondo de la actividad.
@@ -88,16 +89,15 @@ public class Login extends AppCompatActivity {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
                 final float progress = (float) animation.getAnimatedValue();
-                final float width = fondoLogin.getWidth();
+                final float width = fondoRegister.getWidth();
                 final float translationX = width * progress;
-                fondoLogin.setTranslationX(translationX);
-                fondoLoginDos.setTranslationX(translationX - width);
+                fondoRegister.setTranslationX(translationX);
+                fondoRegisterDos.setTranslationX(translationX - width);
             }
         });
 
         animator.start();
     }
-
 
     /**
      * Mostrar progress bar y ocultar el formulario de activity_login
@@ -107,21 +107,20 @@ public class Login extends AppCompatActivity {
         int visibility = show ? View.VISIBLE : View.GONE;
 
         mProgressView.setVisibility(visibility);
-        textLogin.setVisibility(visibility);
-        titleLogin.setVisibility(gone);
+        textRegister.setVisibility(visibility);
+        titleRegister.setVisibility(gone);
         textUser.setVisibility(gone);
+        textEmail.setVisibility(gone);
         textPass.setVisibility(gone);
         textError.setVisibility(gone);
-        passReco.setVisibility(gone);
-        btnLogin.setVisibility(gone);
-        btnGoRegister.setVisibility(gone);
+        btnRegister.setVisibility(gone);
+        btnGoLogin.setVisibility(gone);
     }
 
-
     /**
-     * Llamada POST /signin con Retrofit
+     * Llamada POST /si con Retrofit
      */
-    public void peticionLogin(){
+    private void peticionRegister() {
         // Permite ver los datos que se envian y se reciben
         logInterceptor = new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY);
         httpClientBuilder = new OkHttpClient.Builder().addInterceptor(logInterceptor);
@@ -134,17 +133,30 @@ public class Login extends AppCompatActivity {
 
         showProgress(true);
         WebServiceClient client = retrofit.create(WebServiceClient.class);
-        client.loginUser(new Usuario(textUser.getText().toString(), textPass.getText().toString())).enqueue(new Callback<RespHTTP>() {
+        client.registerUser(new Usuario(textUser.getText().toString(), textEmail.getText().toString(), textPass.getText().toString())).enqueue(new Callback<RespHTTP>() {
             @Override
             public void onResponse(Call<RespHTTP> call, Response<RespHTTP> response) {
                 showProgress(false);
+
+                // Se cumple si el error no es un 2XX
                 if (!response.isSuccessful()) {
+                    Toast.makeText(Register.this, response.code(), Toast.LENGTH_SHORT).show();
                     errorAuth(true);
                     return;
                 }
+
+                // Se cumple si la respuesta es False. Para controlar el username y email.
+                Log.i(null, "---->: " + response.body().getResp());
+                if(!response.body().getResp()){
+                    textError.setText(response.body().getDesc());
+                    errorAuth(true);
+                    return;
+                }
+
                 errorAuth(false);
-                Toast.makeText(Login.this, response.body().getDesc(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(Register.this, response.body().getDesc(), Toast.LENGTH_SHORT).show();
             }
+
             @Override
             public void onFailure(Call<RespHTTP> call, Throwable t) {
                 showProgress(false);
@@ -154,26 +166,23 @@ public class Login extends AppCompatActivity {
     }
 
     /**
-     * Mostrar error de autentificacion por parte del usuario
+     * Evento onClick del btnRegister
+     * @param view
+     */
+    public void onClickRegister(View view){
+        peticionRegister();
+    }
+
+    /**
+     * Mostrar error de registro por parte del usuario
      */
     private void errorAuth(boolean show) {
         textError.setVisibility(show ? View.VISIBLE : View.GONE);
     }
 
-    /**
-     * Evento onClick del btn confirmar.
-     * @param view
-     */
-    public void onClickLogin(View view){
-        peticionLogin();
+    public void onClickGoLogin(View view){
+        finish();
     }
 
-    /**
-     * Evento onClick del btnGoRegister.
-     * @param view
-     */
-    public void onClickGoRegister(View view){
-        Intent intent = new Intent(getApplicationContext(), Register.class);
-        startActivity(intent);
-    }
+
 }
