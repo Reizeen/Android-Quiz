@@ -16,15 +16,12 @@ import android.widget.Toast;
 
 import com.ericarias.quiz.Interface.WebServiceClient;
 import com.ericarias.quiz.Model.Response;
-import com.ericarias.quiz.Model.Usuario;
+import com.ericarias.quiz.Model.Users;
 import com.ericarias.quiz.Model.Utilities;
 import com.ericarias.quiz.R;
 
-import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
-import retrofit2.Retrofit;
 
 public class Register extends AppCompatActivity {
 
@@ -116,7 +113,7 @@ public class Register extends AppCompatActivity {
     public void peticionRegister(){
         showProgress(true);
         WebServiceClient client = Utilities.myRetrofit().create(WebServiceClient.class);
-        client.registerUser(new Usuario(textUser.getText().toString(), textEmail.getText().toString(), textPass.getText().toString())).enqueue(new Callback<Response>() {
+        client.registerUser(new Users(textUser.getText().toString(), textEmail.getText().toString(), textPass.getText().toString())).enqueue(new Callback<Response>() {
             @Override
             public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
                 if (!response.isSuccessful()){

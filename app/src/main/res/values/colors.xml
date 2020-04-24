@@ -4,4 +4,15 @@
     <color name="colorPrimaryDark">#0A2430</color>
     <color name="colorAccent">#FFFFFF</color>
     <color name="colorError">#D32020</color>
+    <color name="colorRedDark">#960B0B</color>
+    <color name="colorRed">#D60000</color>
+    <color name="colorPurpleDark">#6C0B96</color>
+    <color name="colorPurple">#9712DF</color>
+    <color name="colorGreenDark">#0B960D</color>
+    <color name="colorGreen">#12DF1C</color>
+    <color name="colorYellowDark">#A7AD00</color>
+    <color name="colorYellow">#F4FF00</color>
+    <color name="colorOrangeDark">#A82402</color>
+    <color name="colorOrange">#FF2B00</color>
+    <color name="colorNotificLogin">#2B2242</color>
 </resources>

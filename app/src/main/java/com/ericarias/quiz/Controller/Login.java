@@ -16,8 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ericarias.quiz.Interface.WebServiceClient;
-import com.ericarias.quiz.Model.Response;
-import com.ericarias.quiz.Model.Usuario;
+import com.ericarias.quiz.Model.Users;
 import com.ericarias.quiz.Model.Utilities;
 import com.ericarias.quiz.R;
 
@@ -118,20 +117,24 @@ public class Login extends AppCompatActivity {
     public void peticionLogin(){
         showProgress(true);
         WebServiceClient client = Utilities.myRetrofit().create(WebServiceClient.class);
-        client.loginUser(new Usuario(textUser.getText().toString(), textPass.getText().toString())).enqueue(new Callback<Usuario>() {
+        client.loginUser(new Users(textUser.getText().toString(), textPass.getText().toString())).enqueue(new Callback<Users>() {
             @Override
-            public void onResponse(Call<Usuario> call, retrofit2.Response<Usuario> response) {
-                showProgress(false);
+            public void onResponse(Call<Users> call, retrofit2.Response<Users> response) {
                 if (!response.isSuccessful()){
+                    showProgress(false);
                     errorAuth(true);
                     return;
                 }
+
                 errorAuth(false);
-                Toast.makeText(Login.this, Integer.toString(response.body().getId()), Toast.LENGTH_SHORT).show();
-                String gg = null;
+                Intent intent = new Intent(getApplicationContext(), Main.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
             }
             @Override
-            public void onFailure(Call<Usuario> call, Throwable t) {
+            public void onFailure(Call<Users> call, Throwable t) {
                 showProgress(false);
                 Log.e(null, "--> Error onFailure:" + t.getMessage());
             }
