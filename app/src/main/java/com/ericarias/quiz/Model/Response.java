@@ -1,14 +1,14 @@
 package com.ericarias.quiz.Model;
 
 /**
- * Objeto respuesta de peticiones HTTP
+ * Objeto respuesta de la API
  */
-public class RespHTTP {
+public class Response {
 
     private boolean resp;
     private String desc;
 
-    public RespHTTP(boolean resp, String desc) {
+    public Response(boolean resp, String desc) {
         this.resp = resp;
         this.desc = desc;
     }

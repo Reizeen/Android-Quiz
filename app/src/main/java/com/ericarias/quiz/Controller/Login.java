@@ -1,5 +1,6 @@
 package com.ericarias.quiz.Controller;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.animation.ValueAnimator;
@@ -15,18 +16,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ericarias.quiz.Interface.WebServiceClient;
-import com.ericarias.quiz.Model.RespHTTP;
+import com.ericarias.quiz.Model.Response;
 import com.ericarias.quiz.Model.Usuario;
 import com.ericarias.quiz.Model.Utilities;
 import com.ericarias.quiz.R;
 
-import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Login extends AppCompatActivity {
 
@@ -40,11 +36,9 @@ public class Login extends AppCompatActivity {
     private TextView textError;
     private Button btnLogin;
     private Button btnGoRegister;
-
-    private Retrofit retrofit;
-    private HttpLoggingInterceptor logInterceptor;
-    private OkHttpClient.Builder httpClientBuilder;
     private View mProgressView;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,31 +116,22 @@ public class Login extends AppCompatActivity {
      * Llamada POST /signin con Retrofit
      */
     public void peticionLogin(){
-        // Permite ver los datos que se envian y se reciben
-        logInterceptor = new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY);
-        httpClientBuilder = new OkHttpClient.Builder().addInterceptor(logInterceptor);
-
-        retrofit = new Retrofit.Builder()
-                .baseUrl(Utilities.URL_API)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(httpClientBuilder.build())
-                .build();
-
         showProgress(true);
-        WebServiceClient client = retrofit.create(WebServiceClient.class);
-        client.loginUser(new Usuario(textUser.getText().toString(), textPass.getText().toString())).enqueue(new Callback<RespHTTP>() {
+        WebServiceClient client = Utilities.myRetrofit().create(WebServiceClient.class);
+        client.loginUser(new Usuario(textUser.getText().toString(), textPass.getText().toString())).enqueue(new Callback<Usuario>() {
             @Override
-            public void onResponse(Call<RespHTTP> call, Response<RespHTTP> response) {
+            public void onResponse(Call<Usuario> call, retrofit2.Response<Usuario> response) {
                 showProgress(false);
-                if (!response.isSuccessful()) {
+                if (!response.isSuccessful()){
                     errorAuth(true);
                     return;
                 }
                 errorAuth(false);
-                Toast.makeText(Login.this, response.body().getDesc(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(Login.this, Integer.toString(response.body().getId()), Toast.LENGTH_SHORT).show();
+                String gg = null;
             }
             @Override
-            public void onFailure(Call<RespHTTP> call, Throwable t) {
+            public void onFailure(Call<Usuario> call, Throwable t) {
                 showProgress(false);
                 Log.e(null, "--> Error onFailure:" + t.getMessage());
             }
@@ -165,6 +150,7 @@ public class Login extends AppCompatActivity {
      * @param view
      */
     public void onClickLogin(View view){
+        Utilities.hideKeyboard(getApplicationContext(), this.getCurrentFocus());
         peticionLogin();
     }
 
@@ -174,6 +160,14 @@ public class Login extends AppCompatActivity {
      */
     public void onClickGoRegister(View view){
         Intent intent = new Intent(getApplicationContext(), Register.class);
-        startActivity(intent);
+        startActivityForResult(intent, Utilities.COD_REGISTER);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (requestCode == Utilities.COD_REGISTER && resultCode == RESULT_OK) {
+            if (data.getBooleanExtra("register", false))
+                Toast.makeText(this, data.getStringExtra("desc"), Toast.LENGTH_SHORT).show();
+        }
     }
 }

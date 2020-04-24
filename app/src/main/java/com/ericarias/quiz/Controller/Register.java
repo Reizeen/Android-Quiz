@@ -3,6 +3,7 @@ package com.ericarias.quiz.Controller;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.animation.ValueAnimator;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,25 +11,20 @@ import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ericarias.quiz.Interface.WebServiceClient;
-import com.ericarias.quiz.Model.RespHTTP;
+import com.ericarias.quiz.Model.Response;
 import com.ericarias.quiz.Model.Usuario;
 import com.ericarias.quiz.Model.Utilities;
 import com.ericarias.quiz.R;
-
-import org.w3c.dom.Text;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
-import retrofit2.Response;
 import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Register extends AppCompatActivity {
 
@@ -43,9 +39,6 @@ public class Register extends AppCompatActivity {
     private Button btnGoLogin;
     private View mProgressView;
     private TextView textRegister;
-    private Retrofit retrofit;
-    private HttpLoggingInterceptor logInterceptor;
-    private OkHttpClient.Builder httpClientBuilder;
 
 
     @Override
@@ -120,45 +113,34 @@ public class Register extends AppCompatActivity {
     /**
      * Llamada POST /si con Retrofit
      */
-    private void peticionRegister() {
-        // Permite ver los datos que se envian y se reciben
-        logInterceptor = new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY);
-        httpClientBuilder = new OkHttpClient.Builder().addInterceptor(logInterceptor);
-
-        retrofit = new Retrofit.Builder()
-                .baseUrl(Utilities.URL_API)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(httpClientBuilder.build())
-                .build();
-
+    public void peticionRegister(){
         showProgress(true);
-        WebServiceClient client = retrofit.create(WebServiceClient.class);
-        client.registerUser(new Usuario(textUser.getText().toString(), textEmail.getText().toString(), textPass.getText().toString())).enqueue(new Callback<RespHTTP>() {
+        WebServiceClient client = Utilities.myRetrofit().create(WebServiceClient.class);
+        client.registerUser(new Usuario(textUser.getText().toString(), textEmail.getText().toString(), textPass.getText().toString())).enqueue(new Callback<Response>() {
             @Override
-            public void onResponse(Call<RespHTTP> call, Response<RespHTTP> response) {
-                showProgress(false);
-
-                // Se cumple si el error no es un 2XX
-                if (!response.isSuccessful()) {
-                    Toast.makeText(Register.this, response.code(), Toast.LENGTH_SHORT).show();
-                    errorAuth(true);
+            public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
+                if (!response.isSuccessful()){
+                    showProgress(false);
+                    Toast.makeText(Register.this, "ERROR " + response.code(), Toast.LENGTH_LONG).show();
                     return;
                 }
 
-                // Se cumple si la respuesta es False. Para controlar el username y email.
-                Log.i(null, "---->: " + response.body().getResp());
-                if(!response.body().getResp()){
-                    textError.setText(response.body().getDesc());
-                    errorAuth(true);
+                if (!response.body().getResp()){
+                    showProgress(false);
+                    errorAuth(true, response.body().getDesc());
                     return;
                 }
 
-                errorAuth(false);
-                Toast.makeText(Register.this, response.body().getDesc(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), Login.class);
+                intent.putExtra("register", true);
+                intent.putExtra("desc", response.body().getDesc());
+                //intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                setResult(RESULT_OK, intent);
+                finish();
             }
 
             @Override
-            public void onFailure(Call<RespHTTP> call, Throwable t) {
+            public void onFailure(Call<Response> call, Throwable t) {
                 showProgress(false);
                 Log.e(null, "--> Error onFailure:" + t.getMessage());
             }
@@ -170,19 +152,24 @@ public class Register extends AppCompatActivity {
      * @param view
      */
     public void onClickRegister(View view){
+        Utilities.hideKeyboard(getApplicationContext(), this.getCurrentFocus());
         peticionRegister();
     }
 
     /**
      * Mostrar error de registro por parte del usuario
      */
-    private void errorAuth(boolean show) {
+    private void errorAuth(boolean show, String mensajeError) {
         textError.setVisibility(show ? View.VISIBLE : View.GONE);
+        textError.setText(mensajeError);
     }
 
+    /**
+     * Click Login
+     * @param view
+     */
     public void onClickGoLogin(View view){
         finish();
     }
-
 
 }

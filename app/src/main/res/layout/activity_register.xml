@@ -112,7 +112,7 @@
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:paddingBottom="1dp"
-        android:text="Usuario ya registrado"
+        android:text="Error al registrar"
         android:textColor="@color/colorAccent"
         android:background="@drawable/fondo_error"
         android:layout_marginTop="14dp"
