@@ -9,9 +9,13 @@ import retrofit2.http.POST;
 
 public interface WebServiceClient {
 
+
+    @POST("session")
+    Call<Response> session(@Body Users user);
+
     @POST("signin")
-    Call<Users> loginUser(@Body Users usuario);
+    Call<Users> loginUser(@Body Users user);
 
     @POST("signup")
-    Call<Response> registerUser(@Body Users usuario);
+    Call<Response> registerUser(@Body Users user);
 }

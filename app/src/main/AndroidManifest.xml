@@ -11,10 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Controller.Main"></activity>
+        <activity android:name=".Controller.Login"/>
+        <activity android:name=".Controller.Main" />
         <activity android:name=".Controller.Register" />
         <activity
-            android:name=".Controller.Login"
+            android:name=".Controller.Start"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

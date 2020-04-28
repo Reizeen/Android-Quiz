@@ -15,4 +15,7 @@
     <color name="colorOrangeDark">#A82402</color>
     <color name="colorOrange">#FF2B00</color>
     <color name="colorNotificLogin">#2B2242</color>
+    <color name="colorLightBlue">#73D2FF</color>
+    <color name="colorLightBlueDark">#1E97CF</color>
+
 </resources>

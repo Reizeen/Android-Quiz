@@ -8,6 +8,12 @@ public class Users {
     private String pass;
     private String token;
 
+    // Constructor para comprobar sesion
+    public Users(int id, String token) {
+        this.id = id;
+        this.token = token;
+    }
+
     // Constructor para el login
     public Users(String name, String pass) {
         this.name = name;

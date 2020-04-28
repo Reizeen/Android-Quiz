@@ -4,7 +4,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.animation.ValueAnimator;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -36,7 +38,6 @@ public class Login extends AppCompatActivity {
     private Button btnLogin;
     private Button btnGoRegister;
     private View mProgressView;
-
 
 
     @Override
@@ -126,6 +127,7 @@ public class Login extends AppCompatActivity {
                     return;
                 }
 
+                guardarCredenciales(response.body().getId(), response.body().getToken());
                 errorAuth(false);
                 Intent intent = new Intent(getApplicationContext(), Main.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -141,12 +143,28 @@ public class Login extends AppCompatActivity {
         });
     }
 
+
+    /**
+     * Guardar id y token en SharedPreferences
+     * @param id
+     * @param token
+     */
+    private void guardarCredenciales(int id, String token) {
+        SharedPreferences preferences = getSharedPreferences("credenciales", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putInt("id", id);
+        editor.putString("token", token);
+        editor.commit();
+    }
+
+
     /**
      * Mostrar error de autentificacion por parte del usuario
      */
     private void errorAuth(boolean show) {
         textError.setVisibility(show ? View.VISIBLE : View.GONE);
     }
+
 
     /**
      * Evento onClick del btn confirmar.
@@ -156,6 +174,7 @@ public class Login extends AppCompatActivity {
         Utilities.hideKeyboard(getApplicationContext(), this.getCurrentFocus());
         peticionLogin();
     }
+
 
     /**
      * Evento onClick del btnGoRegister.
