@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 
+import com.ericarias.quiz.Model.Utilities;
 import com.ericarias.quiz.R;
 
 public class Main extends AppCompatActivity {
@@ -38,5 +39,10 @@ public class Main extends AppCompatActivity {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
+    }
+
+    public void addQuestion(View view) {
+        Intent intent = new Intent(getApplicationContext(), AddQuestion.class);
+        startActivityForResult(intent, Utilities.COD_ADD_QUESTION);
     }
 }

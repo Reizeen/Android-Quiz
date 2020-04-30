@@ -55,40 +55,59 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/textUserLogin"
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textUserLoginLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:backgroundTint="@android:color/white"
-        android:hint="Usuario"
-        android:inputType="text"
-        android:textColor="@android:color/white"
         android:textColorHint="#757575"
-        android:layout_marginTop="30dp"
-        android:textSize="25dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/titleLogin" >
+
+        <EditText
+            android:id="@+id/textUserLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:backgroundTint="@android:color/white"
+            android:hint="Usuario"
+            android:inputType="text"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="30dp"
+            android:textSize="25dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
 
-    <EditText
-        android:id="@+id/textPassLogin"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textPassLoginLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginRight="50dp"
-        android:backgroundTint="@android:color/white"
-        android:hint="Contraseña"
-        android:inputType="textPassword"
-        android:textColor="@android:color/white"
         android:textColorHint="#757575"
-        android:textSize="25dp"
+        android:layout_marginTop="20dp"
+        app:passwordToggleEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textUserLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/textUserLoginLayout" >
+
+        <EditText
+            android:id="@+id/textPassLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:backgroundTint="@android:color/white"
+            android:hint="Contraseña"
+            android:inputType="textPassword"
+            android:textColor="@android:color/white"
+            android:textColorHint="#757575"
+            android:textSize="25dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <TextView
         android:id="@+id/passReco"
@@ -102,7 +121,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.141"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textPassLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/textPassLoginLayout" />
 
 
     <TextView

@@ -107,6 +107,10 @@ public class Register extends AppCompatActivity {
         btnGoLogin.setVisibility(gone);
     }
 
+
+
+
+
     /**
      * Llamada POST /si con Retrofit
      */
@@ -150,7 +154,10 @@ public class Register extends AppCompatActivity {
      */
     public void onClickRegister(View view){
         Utilities.hideKeyboard(getApplicationContext(), this.getCurrentFocus());
-        peticionRegister();
+        if (textUser.getText().toString().isEmpty() || textPass.getText().toString().isEmpty() || textEmail.getText().toString().isEmpty())
+            errorAuth(true, "Tienes campos vacios");
+        else
+            peticionRegister();
     }
 
     /**

@@ -25,6 +25,7 @@ public class Utilities {
      * Codigos de respuesta
      */
     public static final int COD_REGISTER = 101;
+    public static final int COD_ADD_QUESTION = 102;
 
     /**
      * Oculta el teclado

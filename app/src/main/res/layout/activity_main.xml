@@ -90,6 +90,7 @@
             android:layout_marginRight="50dp"
             android:background="@drawable/btn_green"
             android:textColor="@android:color/white"
+            android:onClick="addQuestion"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/button2" />
