@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Quiz</string>
+
+    <string-array name="themes">
+        <item>ARTE</item>
+        <item>CIENCIA</item>
+        <item>DEPORTE</item>
+        <item>ENTRETENIMIENTO</item>
+        <item>GEOGRAFIA</item>
+        <item>HISTORIA</item>
+        <item>LITERATURA</item>
+        <item>MATEMATICAS</item>
+    </string-array>
+
 </resources>

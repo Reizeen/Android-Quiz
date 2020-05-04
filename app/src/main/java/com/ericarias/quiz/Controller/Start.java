@@ -2,7 +2,6 @@ package com.ericarias.quiz.Controller;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,15 +9,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.ericarias.quiz.Interface.WebServiceClient;
 import com.ericarias.quiz.Model.Response;
-import com.ericarias.quiz.Model.Users;
+import com.ericarias.quiz.Model.User;
 import com.ericarias.quiz.Model.Utilities;
 import com.ericarias.quiz.R;
-
-import org.w3c.dom.Text;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -48,7 +44,7 @@ public class Start extends AppCompatActivity {
 
     public void comprobarSesion() {
         WebServiceClient client = Utilities.myRetrofit().create(WebServiceClient.class);
-        client.session(new Users(id, token)).enqueue(new Callback<Response>() {
+        client.session(new User(id, token)).enqueue(new Callback<Response>() {
             @Override
             public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
                 if (!response.isSuccessful())

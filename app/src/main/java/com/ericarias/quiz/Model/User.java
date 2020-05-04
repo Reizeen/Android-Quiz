@@ -1,6 +1,6 @@
 package com.ericarias.quiz.Model;
 
-public class Users {
+public class User {
 
     private int id;
     private String name;
@@ -9,25 +9,25 @@ public class Users {
     private String token;
 
     // Constructor para comprobar sesion
-    public Users(int id, String token) {
+    public User(int id, String token) {
         this.id = id;
         this.token = token;
     }
 
     // Constructor para el login
-    public Users(String name, String pass) {
+    public User(String name, String pass) {
         this.name = name;
         this.pass = pass;
     }
 
     // Costructor para el registro
-    public Users(String name, String email, String pass) {
+    public User(String name, String email, String pass) {
         this.name = name;
         this.email = email;
         this.pass = pass;
     }
 
-    public Users(int id, String name, String email, String pass, String token) {
+    public User(int id, String name, String email, String pass, String token) {
         this.id = id;
         this.name = name;
         this.email = email;

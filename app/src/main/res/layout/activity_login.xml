@@ -103,7 +103,6 @@
             android:hint="Contraseña"
             android:inputType="textPassword"
             android:textColor="@android:color/white"
-            android:textColorHint="#757575"
             android:textSize="25dp" />
 
     </com.google.android.material.textfield.TextInputLayout>

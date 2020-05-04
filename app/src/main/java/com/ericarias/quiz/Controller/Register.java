@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 import com.ericarias.quiz.Interface.WebServiceClient;
 import com.ericarias.quiz.Model.Response;
-import com.ericarias.quiz.Model.Users;
+import com.ericarias.quiz.Model.User;
 import com.ericarias.quiz.Model.Utilities;
 import com.ericarias.quiz.R;
 
@@ -117,7 +117,7 @@ public class Register extends AppCompatActivity {
     public void peticionRegister(){
         showProgress(true);
         WebServiceClient client = Utilities.myRetrofit().create(WebServiceClient.class);
-        client.registerUser(new Users(textUser.getText().toString(), textEmail.getText().toString(), textPass.getText().toString())).enqueue(new Callback<Response>() {
+        client.registerUser(new User(textUser.getText().toString(), textEmail.getText().toString(), textPass.getText().toString())).enqueue(new Callback<Response>() {
             @Override
             public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
                 if (!response.isSuccessful()){

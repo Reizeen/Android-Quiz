@@ -18,7 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ericarias.quiz.Interface.WebServiceClient;
-import com.ericarias.quiz.Model.Users;
+import com.ericarias.quiz.Model.User;
 import com.ericarias.quiz.Model.Utilities;
 import com.ericarias.quiz.R;
 
@@ -118,9 +118,9 @@ public class Login extends AppCompatActivity {
     public void peticionLogin(){
         showProgress(true);
         WebServiceClient client = Utilities.myRetrofit().create(WebServiceClient.class);
-        client.loginUser(new Users(textUser.getText().toString(), textPass.getText().toString())).enqueue(new Callback<Users>() {
+        client.loginUser(new User(textUser.getText().toString(), textPass.getText().toString())).enqueue(new Callback<User>() {
             @Override
-            public void onResponse(Call<Users> call, retrofit2.Response<Users> response) {
+            public void onResponse(Call<User> call, retrofit2.Response<User> response) {
                 if (!response.isSuccessful()){
                     showProgress(false);
                     errorAuth(true);
@@ -136,7 +136,7 @@ public class Login extends AppCompatActivity {
                 startActivity(intent);
             }
             @Override
-            public void onFailure(Call<Users> call, Throwable t) {
+            public void onFailure(Call<User> call, Throwable t) {
                 showProgress(false);
                 Log.e(null, "--> Error onFailure:" + t.getMessage());
             }
