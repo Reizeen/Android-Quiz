@@ -90,6 +90,9 @@ public class AddQuestion extends AppCompatActivity {
                     return;
                 }
 
+                /**
+                 * En Construccion
+                 */
                 Toast.makeText(AddQuestion.this, response.body().getDesc(), Toast.LENGTH_LONG).show();
 
             }
