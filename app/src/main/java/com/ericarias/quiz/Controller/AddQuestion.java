@@ -3,6 +3,7 @@ package com.ericarias.quiz.Controller;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,6 +19,8 @@ import com.ericarias.quiz.Model.Question;
 import com.ericarias.quiz.Model.Response;
 import com.ericarias.quiz.Model.Utilities;
 import com.ericarias.quiz.R;
+
+import java.util.Random;
 
 import okhttp3.internal.Util;
 import retrofit2.Call;
@@ -81,7 +84,7 @@ public class AddQuestion extends AppCompatActivity {
             @Override
             public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
                 if (!response.isSuccessful()){
-                    Toast.makeText(AddQuestion.this, "ERROR-S: " + response.code(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(AddQuestion.this, "ERROR: " + response.code(), Toast.LENGTH_LONG).show();
                     return;
                 }
 
@@ -90,11 +93,9 @@ public class AddQuestion extends AppCompatActivity {
                     return;
                 }
 
-                /**
-                 * En Construccion
-                 */
-                Toast.makeText(AddQuestion.this, response.body().getDesc(), Toast.LENGTH_LONG).show();
-
+                Intent intent = new Intent(getApplicationContext(), Ranking.class);
+                startActivity(intent);
+                finish();
             }
 
             @Override
@@ -109,10 +110,9 @@ public class AddQuestion extends AppCompatActivity {
      * @param view
      */
     public void onClickAddQuestion(View view) {
-
-        insertQuestion();
-
+        if (textQuestion.getText().toString().isEmpty() || textCorrect.getText().toString().isEmpty() || textIncorrectOne.getText().toString().isEmpty() || textIncorrectTwo.getText().toString().isEmpty() || textIncorrectThree.getText().toString().isEmpty())
+            Toast.makeText(this, "Rellena todos los campos", Toast.LENGTH_LONG).show();
+        else
+            insertQuestion();
     }
-
-
 }

@@ -20,10 +20,6 @@ public class Main extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        /*Window window = this.getWindow();
-        window.setStatusBarColor(ContextCompat.getColor(getApplicationContext(), R.color.colorNotificLogin));*/
-
     }
 
 
@@ -43,6 +39,11 @@ public class Main extends AppCompatActivity {
 
     public void addQuestion(View view) {
         Intent intent = new Intent(getApplicationContext(), AddQuestion.class);
-        startActivityForResult(intent, Utilities.COD_ADD_QUESTION);
+        startActivity(intent);
+    }
+
+    public void viewPoints(View view) {
+        Intent intent = new Intent(getApplicationContext(), PointsUsers.class);
+        startActivity(intent);
     }
 }

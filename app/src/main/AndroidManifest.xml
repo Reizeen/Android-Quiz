@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Controller.AddQuestion"></activity>
+        <activity android:name=".Controller.PointsUsers"></activity>
+        <activity android:name=".Controller.Ranking" />
+        <activity android:name=".Controller.AddQuestion" />
         <activity android:name=".Controller.Login" />
         <activity android:name=".Controller.Main" />
         <activity android:name=".Controller.Register" />
