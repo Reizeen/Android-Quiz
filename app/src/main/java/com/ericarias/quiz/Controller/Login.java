@@ -127,7 +127,7 @@ public class Login extends AppCompatActivity {
                     return;
                 }
 
-                guardarCredenciales(response.body().getId(), response.body().getToken());
+                guardarCredenciales(response.body().getId(), response.body().getName(), response.body().getToken());
                 errorAuth(false);
                 Intent intent = new Intent(getApplicationContext(), Main.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -149,10 +149,11 @@ public class Login extends AppCompatActivity {
      * @param id
      * @param token
      */
-    private void guardarCredenciales(int id, String token) {
+    private void guardarCredenciales(int id, String username, String token) {
         SharedPreferences preferences = getSharedPreferences("credenciales", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putInt("id", id);
+        editor.putString("name", username);
         editor.putString("token", token);
         editor.commit();
     }

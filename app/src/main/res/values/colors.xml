@@ -17,5 +17,8 @@
     <color name="colorNotificLogin">#2B2242</color>
     <color name="colorLightBlue">#73D2FF</color>
     <color name="colorLightBlueDark">#1E97CF</color>
+    <color name="oro">#ffbf00</color>
+    <color name="plata">#e3e4e5</color>
+    <color name="bronce">#cd7f32 </color>
 
 </resources>
