@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.ericarias.quiz.Interface.WebServiceClient;
-import com.ericarias.quiz.Model.Response;
+import com.ericarias.quiz.Model.ResponseServer;
 import com.ericarias.quiz.Model.User;
 import com.ericarias.quiz.Model.Utilities;
 import com.ericarias.quiz.R;
@@ -44,9 +44,9 @@ public class Start extends AppCompatActivity {
 
     public void comprobarSesion() {
         WebServiceClient client = Utilities.myRetrofit().create(WebServiceClient.class);
-        client.session(new User(id, token)).enqueue(new Callback<Response>() {
+        client.session(new User(id, token)).enqueue(new Callback<ResponseServer>() {
             @Override
-            public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
+            public void onResponse(Call<ResponseServer> call, retrofit2.Response<ResponseServer> response) {
                 if (!response.isSuccessful())
                     errorStart.setVisibility(View.VISIBLE);
 
@@ -65,7 +65,7 @@ public class Start extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<Response> call, Throwable t) {
+            public void onFailure(Call<ResponseServer> call, Throwable t) {
                 errorStart.setVisibility(View.VISIBLE);
                 Log.e(null, "--> Error Start:" + t.getMessage());
             }

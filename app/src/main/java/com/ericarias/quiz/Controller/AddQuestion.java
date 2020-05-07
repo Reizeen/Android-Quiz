@@ -9,20 +9,16 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.ericarias.quiz.Interface.WebServiceClient;
 import com.ericarias.quiz.Model.Question;
-import com.ericarias.quiz.Model.Response;
+import com.ericarias.quiz.Model.ResponseServer;
 import com.ericarias.quiz.Model.Utilities;
 import com.ericarias.quiz.R;
 
-import java.util.Random;
-
-import okhttp3.internal.Util;
 import retrofit2.Call;
 import retrofit2.Callback;
 
@@ -80,9 +76,9 @@ public class AddQuestion extends AppCompatActivity {
                 selectTheme.getSelectedItem().toString().substring(0,3));
 
         WebServiceClient client = Utilities.myRetrofit().create(WebServiceClient.class);
-        client.addQuestion(token, question).enqueue(new Callback<Response>() {
+        client.addQuestion(token, question).enqueue(new Callback<ResponseServer>() {
             @Override
-            public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
+            public void onResponse(Call<ResponseServer> call, retrofit2.Response<ResponseServer> response) {
                 if (!response.isSuccessful()){
                     Toast.makeText(AddQuestion.this, "ERROR: " + response.code(), Toast.LENGTH_LONG).show();
                     return;
@@ -99,7 +95,7 @@ public class AddQuestion extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<Response> call, Throwable t) {
+            public void onFailure(Call<ResponseServer> call, Throwable t) {
                 Log.e(null, "--> Error onFailure:" + t.getMessage());
             }
         });

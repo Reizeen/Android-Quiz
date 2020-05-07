@@ -3,12 +3,12 @@ package com.ericarias.quiz.Model;
 /**
  * Objeto respuesta de la API
  */
-public class Response {
+public class ResponseServer {
 
     private boolean resp;
     private String desc;
 
-    public Response(boolean resp, String desc) {
+    public ResponseServer(boolean resp, String desc) {
         this.resp = resp;
         this.desc = desc;
     }

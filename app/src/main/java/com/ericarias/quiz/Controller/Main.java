@@ -1,17 +1,13 @@
 package com.ericarias.quiz.Controller;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.view.Window;
 
-import com.ericarias.quiz.Model.Utilities;
 import com.ericarias.quiz.R;
 
 public class Main extends AppCompatActivity {
@@ -21,7 +17,6 @@ public class Main extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
-
 
     public void cerrrarSesion(View view) {
         SharedPreferences preferences = getSharedPreferences("credenciales", Context.MODE_PRIVATE);
@@ -43,7 +38,12 @@ public class Main extends AppCompatActivity {
     }
 
     public void viewPoints(View view) {
-        Intent intent = new Intent(getApplicationContext(), PointsUsers.class);
+        Intent intent = new Intent(getApplicationContext(), Ranking.class);
+        startActivity(intent);
+    }
+
+    public void viewQuestions(View view) {
+        Intent intent = new Intent(getApplicationContext(), ViewQuestions.class);
         startActivity(intent);
     }
 }

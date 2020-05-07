@@ -1,9 +1,6 @@
-package com.ericarias.quiz.Controller;
+package com.ericarias.quiz.Controller.Adapters;
 
 import android.content.Context;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,7 +17,7 @@ import com.ericarias.quiz.R;
 
 import java.util.ArrayList;
 
-public class AdapterPoints extends RecyclerView.Adapter<AdapterPoints.ViewHolder> {
+public class AdapterRanking extends RecyclerView.Adapter<AdapterRanking.ViewHolder> {
 
     private ArrayList<Points> points;
     private Context context;
@@ -30,7 +27,7 @@ public class AdapterPoints extends RecyclerView.Adapter<AdapterPoints.ViewHolder
      * @param context
      * @param points
      */
-    public AdapterPoints(Context context, ArrayList<Points> points){
+    public AdapterRanking(Context context, ArrayList<Points> points){
         this.context = context;
         this.points = points;
     }
@@ -43,18 +40,18 @@ public class AdapterPoints extends RecyclerView.Adapter<AdapterPoints.ViewHolder
      */
     @NonNull
     @Override
-    public AdapterPoints.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public AdapterRanking.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_points, parent, false);
-        return new AdapterPoints.ViewHolder(view);
+        return new AdapterRanking.ViewHolder(view);
     }
 
     /**
-     * Rellena la informacion del array a cada item
+     * Rellena la informacion del array a cada item del Recycler
      * @param holder
      * @param position
      */
     @Override
-    public void onBindViewHolder(@NonNull AdapterPoints.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull AdapterRanking.ViewHolder holder, int position) {
 
         int positionRanking = position + 1;
 

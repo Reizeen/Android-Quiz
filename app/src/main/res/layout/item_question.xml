@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/tools"
+    android:id="@+id/cardViewItemQuest"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="15dp"
+    android:layout_marginRight="30dp"
+    android:layout_marginLeft="30dp"
+    card_view:cardBackgroundColor="@color/colorAccent"
+    app:cardCornerRadius="20dp">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="horizontal"
+        android:layout_margin="4dp">
+
+        <TextView
+            android:id="@+id/textItemQuest"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="2dp"
+            android:layout_marginLeft="10dp"
+            android:layout_alignParentTop="true"
+            android:gravity="left|center"
+            android:text="Pregunta..."
+            android:maxLines="2"
+            android:textColor="#000000"
+            android:textSize="15dp"
+            android:layout_weight="1"/>
+
+        <ImageView
+                android:id="@+id/editQuest"
+                android:layout_width="30dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="10dp"
+                android:layout_toStartOf="@+id/deleteQuest"
+                app:srcCompat="@drawable/btn_edit" />
+
+            <ImageView
+                android:id="@+id/deleteQuest"
+                android:layout_width="30dp"
+                android:layout_marginTop="5dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                app:srcCompat="@drawable/btn_delete" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
+
