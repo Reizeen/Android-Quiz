@@ -8,25 +8,46 @@ public class User {
     private String pass;
     private String token;
 
-    // Constructor para comprobar sesion
+    /**
+     * Constructor para la sesion
+     * @param id
+     * @param token
+     */
     public User(int id, String token) {
         this.id = id;
         this.token = token;
     }
 
-    // Constructor para el login
+    /**
+     * Constructor para el login
+     * @param name
+     * @param pass
+     */
     public User(String name, String pass) {
         this.name = name;
         this.pass = pass;
     }
 
-    // Costructor para el registro
+    /**
+     * Constructor para el registro
+     * @param name
+     * @param email
+     * @param pass
+     */
     public User(String name, String email, String pass) {
         this.name = name;
         this.email = email;
         this.pass = pass;
     }
 
+    /**
+     * Constructor general
+     * @param id
+     * @param name
+     * @param email
+     * @param pass
+     * @param token
+     */
     public User(int id, String name, String email, String pass, String token) {
         this.id = id;
         this.name = name;

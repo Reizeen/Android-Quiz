@@ -26,6 +26,7 @@ public class Utilities {
      */
     public static final int COD_REGISTER = 101;
     public static final int COD_ADD_QUESTION = 102;
+    public static final int COD_EDIT_QUESTION = 103;
 
     /**
      * Oculta el teclado

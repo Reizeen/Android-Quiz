@@ -31,7 +31,7 @@ public class AddQuestion extends AppCompatActivity {
     private EditText textIncorrectTwo;
     private EditText textIncorrectThree;
     private Spinner selectTheme;
-    private int id;
+    private String username;
     private String token;
 
     @Override
@@ -49,15 +49,15 @@ public class AddQuestion extends AppCompatActivity {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.themes, R.layout.support_simple_spinner_dropdown_item);
         selectTheme.setAdapter(adapter);
 
-        carggarCredenciales();
+        loadAuth();
     }
 
     /**
      * Cargar id del usuario
      */
-    public void carggarCredenciales() {
+    public void loadAuth() {
         SharedPreferences preferences = getSharedPreferences("credenciales", Context.MODE_PRIVATE);
-        id = preferences.getInt("id", 0);
+        username = preferences.getString("name", "null");
         token = preferences.getString("token", "null");
     }
 
@@ -72,8 +72,8 @@ public class AddQuestion extends AppCompatActivity {
                 textIncorrectOne.getText().toString(),
                 textIncorrectTwo.getText().toString(),
                 textIncorrectThree.getText().toString(),
-                id, // id del usuario
-                selectTheme.getSelectedItem().toString().substring(0,3));
+                selectTheme.getSelectedItem().toString(),
+                username);
 
         WebServiceClient client = Utilities.myRetrofit().create(WebServiceClient.class);
         client.addQuestion(token, question).enqueue(new Callback<ResponseServer>() {
@@ -89,7 +89,7 @@ public class AddQuestion extends AppCompatActivity {
                     return;
                 }
 
-                Intent intent = new Intent(getApplicationContext(), Ranking.class);
+                Intent intent = new Intent(getApplicationContext(), ViewQuestions.class);
                 startActivity(intent);
                 finish();
             }

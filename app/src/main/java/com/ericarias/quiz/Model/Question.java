@@ -1,6 +1,8 @@
 package com.ericarias.quiz.Model;
 
-public class Question {
+import java.io.Serializable;
+
+public class Question implements Serializable {
 
     private int id;
     private String question;
@@ -8,17 +10,48 @@ public class Question {
     private String respaltone;
     private String respalttwo;
     private String respaltthree;
-    private int user_id;
-    private String theme_cod;
+    private String theme;
+    private String user;
 
-    public Question(String question, String respcorrect, String respaltone, String respalttwo, String respaltthree, int user_id, String theme_cod) {
+    /**
+     * Constructor para añadir pregunta
+     * @param question
+     * @param respcorrect
+     * @param respaltone
+     * @param respalttwo
+     * @param respaltthree
+     */
+    public Question(String question, String respcorrect, String respaltone, String respalttwo, String respaltthree, String theme, String user) {
         this.question = question;
         this.respcorrect = respcorrect;
         this.respaltone = respaltone;
         this.respalttwo = respalttwo;
         this.respaltthree = respaltthree;
-        this.user_id = user_id;
-        this.theme_cod = theme_cod;
+        this.theme = theme;
+        this.user = user;
+
+    }
+
+    /**
+     * Constrcutor general
+     * @param id
+     * @param question
+     * @param respcorrect
+     * @param respaltone
+     * @param respalttwo
+     * @param respaltthree
+     * @param user
+     * @param theme
+     */
+    public Question(int id, String question, String respcorrect, String respaltone, String respalttwo, String respaltthree, String theme, String user) {
+        this.id = id;
+        this.question = question;
+        this.respcorrect = respcorrect;
+        this.respaltone = respaltone;
+        this.respalttwo = respalttwo;
+        this.respaltthree = respaltthree;
+        this.theme = theme;
+        this.user = user;
     }
 
     public int getId() {
@@ -69,19 +102,19 @@ public class Question {
         this.respaltthree = respaltthree;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public String getTheme_name() {
+        return theme;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setTheme_name(String theme_name) {
+        this.theme = theme_name;
     }
 
-    public String getTheme_cod() {
-        return theme_cod;
+    public String getUser_name() {
+        return user;
     }
 
-    public void setTheme_cod(String theme_cod) {
-        this.theme_cod = theme_cod;
+    public void setUser_name(String user_name) {
+        this.user = user_name;
     }
 }

@@ -2,14 +2,14 @@
     <string name="app_name">Quiz</string>
 
     <string-array name="themes">
-        <item>ARTE</item>
-        <item>CIENCIA</item>
-        <item>DEPORTE</item>
-        <item>ENTRETENIMIENTO</item>
-        <item>GEOGRAFIA</item>
-        <item>HISTORIA</item>
-        <item>LITERATURA</item>
-        <item>MATEMATICAS</item>
+        <item>Arte</item>
+        <item>Ciencia</item>
+        <item>Deporte</item>
+        <item>Entretenimiento</item>
+        <item>Geografía</item>
+        <item>Historia</item>
+        <item>Literatura</item>
+        <item>Matematicas</item>
     </string-array>
 
 </resources>

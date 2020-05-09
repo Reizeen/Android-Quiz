@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    tools:context=".Controller.AddQuestion">
+    tools:context=".Controller.EditQuestion">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -14,8 +14,8 @@
 
         <ImageView
             android:id="@+id/imageView2"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:alpha="0.015"
             android:src="#000000"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -26,11 +26,11 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="casual"
-            android:text="CREAR PREGUNTA"
+            android:text="EDITAR PREGUNTA"
             android:layout_marginTop="40dp"
             android:textAlignment="center"
             android:textColor="@color/colorPrimaryDark"
@@ -42,7 +42,7 @@
 
 
         <EditText
-            android:id="@+id/textQuestion"
+            android:id="@+id/textQuestionEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
@@ -59,11 +59,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.8"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
 
 
         <EditText
-            android:id="@+id/textCorrect"
+            android:id="@+id/textCorrectEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
@@ -77,11 +77,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.8"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textQuestion" />
+            app:layout_constraintTop_toBottomOf="@+id/textQuestionEdit" />
 
 
         <EditText
-            android:id="@+id/textIncorrectOne"
+            android:id="@+id/textIncorrectOneEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
@@ -95,10 +95,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.8"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textCorrect" />
+            app:layout_constraintTop_toBottomOf="@+id/textCorrectEdit" />
 
         <EditText
-            android:id="@+id/textIncorrectTwo"
+            android:id="@+id/textIncorrectTwoEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
@@ -112,11 +112,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.8"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textIncorrectOne" />
+            app:layout_constraintTop_toBottomOf="@+id/textIncorrectOneEdit" />
 
 
         <EditText
-            android:id="@+id/textIncorrectThree"
+            android:id="@+id/textIncorrectThreeEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
@@ -130,10 +130,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.8"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textIncorrectTwo" />
+            app:layout_constraintTop_toBottomOf="@+id/textIncorrectTwoEdit" />
 
         <Spinner
-            android:id="@+id/addTheme"
+            android:id="@+id/editTheme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/border_text"
@@ -141,23 +141,23 @@
             android:layout_marginRight="40dp"
             android:layout_marginTop="40dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textIncorrectThree" />
+            app:layout_constraintTop_toBottomOf="@+id/textIncorrectThreeEdit" />
 
 
         <Button
-            android:id="@+id/btnAddQuestion"
+            android:id="@+id/btnAddQuestionEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/btn_blue_dark"
-            android:onClick="onClickAddQuestion"
-            android:text="Crear Pregunta"
+            android:onClick="onClickEditQuestion"
+            android:text="Editar Pregunta"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
             android:layout_marginTop="40dp"
             android:textColor="@android:color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/addTheme" />
+            app:layout_constraintTop_toBottomOf="@+id/editTheme" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

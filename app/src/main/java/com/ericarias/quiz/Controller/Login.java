@@ -21,6 +21,7 @@ import com.ericarias.quiz.Interface.WebServiceClient;
 import com.ericarias.quiz.Model.User;
 import com.ericarias.quiz.Model.Utilities;
 import com.ericarias.quiz.R;
+import com.google.android.material.textfield.TextInputLayout;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,7 +32,9 @@ public class Login extends AppCompatActivity {
     private ImageView fondoLoginDos;
     private TextView titleLogin;
     private EditText textUser;
+    private TextInputLayout textUserLayout;
     private EditText textPass;
+    private TextInputLayout textPassLayout;
     private TextView passReco;
     private TextView textLogin;
     private TextView textError;
@@ -51,7 +54,9 @@ public class Login extends AppCompatActivity {
 
         titleLogin = findViewById(R.id.titleLogin);
         textUser = findViewById(R.id.textUserLogin);
+        textUserLayout = findViewById(R.id.textUserLoginLayout);
         textPass = findViewById(R.id.textPassLogin);
+        textPassLayout = findViewById(R.id.textPassLoginLayout);
         passReco = findViewById(R.id.passReco);
         textLogin = findViewById(R.id.textLogin);
         textError = findViewById(R.id.textErrorLogin);
@@ -104,7 +109,9 @@ public class Login extends AppCompatActivity {
         textLogin.setVisibility(visibility);
         titleLogin.setVisibility(gone);
         textUser.setVisibility(gone);
+        textUserLayout.setVisibility(gone);
         textPass.setVisibility(gone);
+        textPassLayout.setVisibility(gone);
         textError.setVisibility(gone);
         passReco.setVisibility(gone);
         btnLogin.setVisibility(gone);
@@ -127,7 +134,7 @@ public class Login extends AppCompatActivity {
                     return;
                 }
 
-                guardarCredenciales(response.body().getId(), response.body().getName(), response.body().getToken());
+                saveAuth(response.body().getId(), response.body().getName(), response.body().getToken());
                 errorAuth(false);
                 Intent intent = new Intent(getApplicationContext(), Main.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -149,7 +156,7 @@ public class Login extends AppCompatActivity {
      * @param id
      * @param token
      */
-    private void guardarCredenciales(int id, String username, String token) {
+    private void saveAuth(int id, String username, String token) {
         SharedPreferences preferences = getSharedPreferences("credenciales", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putInt("id", id);

@@ -19,6 +19,7 @@ import com.ericarias.quiz.Model.ResponseServer;
 import com.ericarias.quiz.Model.User;
 import com.ericarias.quiz.Model.Utilities;
 import com.ericarias.quiz.R;
+import com.google.android.material.textfield.TextInputLayout;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -29,8 +30,11 @@ public class Register extends AppCompatActivity {
     private ImageView fondoRegisterDos;
     private TextView titleRegister;
     private EditText textUser;
+    private TextInputLayout textUserLayout;
     private EditText textEmail;
+    private TextInputLayout textEmailLayout;
     private EditText textPass;
+    private TextInputLayout textPassLayout;
     private TextView textError;
     private Button btnRegister;
     private Button btnGoLogin;
@@ -49,8 +53,11 @@ public class Register extends AppCompatActivity {
 
         titleRegister = findViewById(R.id.titleRegister);
         textUser = findViewById(R.id.textUserRegister);
+        textUserLayout = findViewById(R.id.textUserRegisterLayout);
         textEmail = findViewById(R.id.textEmailRegister);
+        textEmailLayout = findViewById(R.id.textEmailRegisterLayout);
         textPass = findViewById(R.id.textPassRegister);
+        textPassLayout = findViewById(R.id.textPassRegisterLayout);
         textError = findViewById(R.id.textErrorRegister);
         btnRegister = findViewById(R.id.btnRegister);
         btnGoLogin = findViewById(R.id.btnGoLogin);
@@ -99,16 +106,16 @@ public class Register extends AppCompatActivity {
         mProgressView.setVisibility(visibility);
         textRegister.setVisibility(visibility);
         titleRegister.setVisibility(gone);
+        textUserLayout.setVisibility(gone);
         textUser.setVisibility(gone);
+        textEmailLayout.setVisibility(gone);
         textEmail.setVisibility(gone);
+        textPassLayout.setVisibility(gone);
         textPass.setVisibility(gone);
         textError.setVisibility(gone);
         btnRegister.setVisibility(gone);
         btnGoLogin.setVisibility(gone);
     }
-
-
-
 
 
     /**

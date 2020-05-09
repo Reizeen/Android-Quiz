@@ -32,11 +32,11 @@ public class Start extends AppCompatActivity {
 
         errorStart = findViewById(R.id.errorStart);
 
-        carggarCredenciales();
+        loadAuth();
         comprobarSesion();
     }
 
-    public void carggarCredenciales() {
+    public void loadAuth() {
         SharedPreferences preferences = getSharedPreferences("credenciales", Context.MODE_PRIVATE);
         id = preferences.getInt("id", 0);
         token = preferences.getString("token", "null");

@@ -49,11 +49,11 @@ public class Ranking extends AppCompatActivity {
         textPosUser = findViewById(R.id.posUserRanking);
         textUsername = findViewById(R.id.userNameRanking);
 
-        cargarCredenciales();
+        loadAuth();
         getPoints();
     }
 
-    public void cargarCredenciales() {
+    public void loadAuth() {
         SharedPreferences preferences = getSharedPreferences("credenciales", Context.MODE_PRIVATE);
         token = preferences.getString("token", "null");
         username = preferences.getString("name", "null");

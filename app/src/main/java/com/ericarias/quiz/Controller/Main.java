@@ -18,7 +18,7 @@ public class Main extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void cerrrarSesion(View view) {
+    public void signOff(View view) {
         SharedPreferences preferences = getSharedPreferences("credenciales", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putInt("id", 0);

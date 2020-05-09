@@ -13,6 +13,7 @@ import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface WebServiceClient {
@@ -41,4 +42,8 @@ public interface WebServiceClient {
     @DELETE("question/{id}")
     Call<ResponseServer> deleteQuestion(@Header("token") String token,
                                         @Path("id") int idQuestion);
+
+    @PUT("question")
+    Call<ResponseServer> editQuestion(@Header("token") String token,
+                                      @Body Question question);
 }

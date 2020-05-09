@@ -123,7 +123,7 @@
             android:background="@drawable/btn_red"
             android:fontFamily="casual"
             android:text="Cerrar Sesion"
-            android:onClick="cerrrarSesion"
+            android:onClick="signOff"
             android:textColor="@android:color/white"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
