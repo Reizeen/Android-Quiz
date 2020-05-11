@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Controller.EditQuestion"></activity>
+        <activity android:name=".Controller.Roulette"></activity>
+        <activity android:name=".Controller.EditQuestion" />
         <activity android:name=".Controller.ViewQuestions" />
         <activity android:name=".Controller.Ranking" />
         <activity android:name=".Controller.AddQuestion" />

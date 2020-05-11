@@ -46,4 +46,9 @@ public class Main extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), ViewQuestions.class);
         startActivity(intent);
     }
+
+    public void startGame(View view) {
+        Intent intent = new Intent(getApplicationContext(), Roulette.class);
+        startActivity(intent);
+    }
 }
