@@ -6,50 +6,37 @@ public class Question implements Serializable {
 
     private int id;
     private String question;
-    private String respcorrect;
-    private String respaltone;
-    private String respalttwo;
-    private String respaltthree;
+    private String[] answers;
     private String theme;
     private String user;
 
     /**
      * Constructor para añadir pregunta
      * @param question
-     * @param respcorrect
-     * @param respaltone
-     * @param respalttwo
-     * @param respaltthree
+     * @param answers
+     * @param theme
+     * @param user
      */
-    public Question(String question, String respcorrect, String respaltone, String respalttwo, String respaltthree, String theme, String user) {
+    public Question(String question, String[] answers, String theme, String user) {
         this.question = question;
-        this.respcorrect = respcorrect;
-        this.respaltone = respaltone;
-        this.respalttwo = respalttwo;
-        this.respaltthree = respaltthree;
         this.theme = theme;
         this.user = user;
+        this.answers = answers;
 
     }
 
     /**
-     * Constrcutor general
+     * Constructor general
      * @param id
      * @param question
-     * @param respcorrect
-     * @param respaltone
-     * @param respalttwo
-     * @param respaltthree
-     * @param user
+     * @param answers
      * @param theme
+     * @param user
      */
-    public Question(int id, String question, String respcorrect, String respaltone, String respalttwo, String respaltthree, String theme, String user) {
+    public Question(int id, String question, String[] answers, String theme, String user) {
         this.id = id;
         this.question = question;
-        this.respcorrect = respcorrect;
-        this.respaltone = respaltone;
-        this.respalttwo = respalttwo;
-        this.respaltthree = respaltthree;
+        this.answers = answers;
         this.theme = theme;
         this.user = user;
     }
@@ -70,51 +57,27 @@ public class Question implements Serializable {
         this.question = question;
     }
 
-    public String getRespcorrect() {
-        return respcorrect;
+    public String[] getAnswers() {
+        return answers;
     }
 
-    public void setRespcorrect(String respcorrect) {
-        this.respcorrect = respcorrect;
+    public void setAnswers(String[] answers) {
+        this.answers = answers;
     }
 
-    public String getRespaltone() {
-        return respaltone;
-    }
-
-    public void setRespaltone(String respaltone) {
-        this.respaltone = respaltone;
-    }
-
-    public String getRespalttwo() {
-        return respalttwo;
-    }
-
-    public void setRespalttwo(String respalttwo) {
-        this.respalttwo = respalttwo;
-    }
-
-    public String getRespaltthree() {
-        return respaltthree;
-    }
-
-    public void setRespaltthree(String respaltthree) {
-        this.respaltthree = respaltthree;
-    }
-
-    public String getTheme_name() {
+    public String getTheme() {
         return theme;
     }
 
-    public void setTheme_name(String theme_name) {
-        this.theme = theme_name;
+    public void setTheme(String theme) {
+        this.theme = theme;
     }
 
-    public String getUser_name() {
+    public String getUser() {
         return user;
     }
 
-    public void setUser_name(String user_name) {
-        this.user = user_name;
+    public void setUser(String user) {
+        this.user = user;
     }
 }

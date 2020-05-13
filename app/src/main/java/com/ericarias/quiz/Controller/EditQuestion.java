@@ -60,23 +60,26 @@ public class EditQuestion extends AppCompatActivity {
 
     private void loadQuestion() {
         textQuestion.setText(question.getQuestion());
-        textCorrect.setText(question.getRespcorrect());
-        textIncorrectOne.setText(question.getRespaltone());
-        textIncorrectTwo.setText(question.getRespalttwo());
-        textIncorrectThree.setText(question.getRespaltthree());
+        textCorrect.setText(question.getAnswers()[0]);
+        textIncorrectOne.setText(question.getAnswers()[1]);
+        textIncorrectTwo.setText(question.getAnswers()[2]);
+        textIncorrectThree.setText(question.getAnswers()[3]);
 
-        int pos = adapter.getPosition(question.getTheme_name());
+        int pos = adapter.getPosition(question.getTheme());
         selectTheme.setSelection(pos);
     }
 
     private void saveQuestion() {
-        question.setQuestion(textQuestion.getText().toString());
-        question.setRespcorrect(textCorrect.getText().toString());
-        question.setRespaltone(textIncorrectOne.getText().toString());
-        question.setRespalttwo(textIncorrectTwo.getText().toString());
-        question.setRespaltthree(textIncorrectThree.getText().toString());
-        question.setTheme_name(selectTheme.getSelectedItem().toString());
+        String[] answers = {
+                textCorrect.getText().toString(),
+                textIncorrectOne.getText().toString(),
+                textIncorrectTwo.getText().toString(),
+                textIncorrectThree.getText().toString()
+        };
 
+        question.setQuestion(textQuestion.getText().toString());
+        question.setAnswers(answers);
+        question.setTheme(selectTheme.getSelectedItem().toString());
     }
 
     private void editQuestion(){

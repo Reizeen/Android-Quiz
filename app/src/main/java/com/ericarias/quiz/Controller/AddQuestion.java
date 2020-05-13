@@ -66,12 +66,16 @@ public class AddQuestion extends AppCompatActivity {
      */
     public void insertQuestion(){
 
-        Question question = new Question(
-                textQuestion.getText().toString(),
+        String[] answers = {
                 textCorrect.getText().toString(),
                 textIncorrectOne.getText().toString(),
                 textIncorrectTwo.getText().toString(),
-                textIncorrectThree.getText().toString(),
+                textIncorrectThree.getText().toString()
+        };
+
+        Question question = new Question(
+                textQuestion.getText().toString(),
+                answers,
                 selectTheme.getSelectedItem().toString(),
                 username);
 
