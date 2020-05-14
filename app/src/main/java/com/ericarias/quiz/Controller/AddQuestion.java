@@ -19,6 +19,9 @@ import com.ericarias.quiz.Model.ResponseServer;
 import com.ericarias.quiz.Model.Utilities;
 import com.ericarias.quiz.R;
 
+import java.util.Arrays;
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 
@@ -66,12 +69,12 @@ public class AddQuestion extends AppCompatActivity {
      */
     public void insertQuestion(){
 
-        String[] answers = {
+        List<String> answers = Arrays.asList(
                 textCorrect.getText().toString(),
                 textIncorrectOne.getText().toString(),
                 textIncorrectTwo.getText().toString(),
                 textIncorrectThree.getText().toString()
-        };
+        );
 
         Question question = new Question(
                 textQuestion.getText().toString(),

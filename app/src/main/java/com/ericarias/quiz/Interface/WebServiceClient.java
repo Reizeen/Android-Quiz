@@ -46,4 +46,9 @@ public interface WebServiceClient {
     @PUT("question")
     Call<ResponseServer> editQuestion(@Header("token") String token,
                                       @Body Question question);
+
+    @GET("quiz/{idTheme}")
+    Call<List<Question>> gameQuestions(@Header("token") String token,
+                                       @Path("idTheme") String idTheme);
+
 }

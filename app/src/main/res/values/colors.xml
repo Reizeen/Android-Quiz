@@ -22,4 +22,13 @@
     <color name="plata">#e3e4e5</color>
     <color name="bronce">#cd7f32 </color>
 
+    <color name="colorMAT">#D8880000</color>
+    <color name="colorHIS">#D8882000</color>
+    <color name="colorART">#D8D59900</color>
+    <color name="colorDEP">#D81D8800</color>
+    <color name="colorLIT">#D8016E7C</color>
+    <color name="colorGEO">#D8001061</color>
+    <color name="colorENT">#BE38004D</color>
+    <color name="colorCIE">#BE38004D</color>
+
 </resources>

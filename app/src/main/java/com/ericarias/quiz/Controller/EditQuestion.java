@@ -19,6 +19,9 @@ import com.ericarias.quiz.Model.ResponseServer;
 import com.ericarias.quiz.Model.Utilities;
 import com.ericarias.quiz.R;
 
+import java.util.Arrays;
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -60,22 +63,22 @@ public class EditQuestion extends AppCompatActivity {
 
     private void loadQuestion() {
         textQuestion.setText(question.getQuestion());
-        textCorrect.setText(question.getAnswers()[0]);
-        textIncorrectOne.setText(question.getAnswers()[1]);
-        textIncorrectTwo.setText(question.getAnswers()[2]);
-        textIncorrectThree.setText(question.getAnswers()[3]);
+        textCorrect.setText(question.getAnswers().get(0));
+        textIncorrectOne.setText(question.getAnswers().get(1));
+        textIncorrectTwo.setText(question.getAnswers().get(2));
+        textIncorrectThree.setText(question.getAnswers().get(3));
 
         int pos = adapter.getPosition(question.getTheme());
         selectTheme.setSelection(pos);
     }
 
     private void saveQuestion() {
-        String[] answers = {
+        List<String> answers = Arrays.asList(
                 textCorrect.getText().toString(),
                 textIncorrectOne.getText().toString(),
                 textIncorrectTwo.getText().toString(),
                 textIncorrectThree.getText().toString()
-        };
+        );
 
         question.setQuestion(textQuestion.getText().toString());
         question.setAnswers(answers);

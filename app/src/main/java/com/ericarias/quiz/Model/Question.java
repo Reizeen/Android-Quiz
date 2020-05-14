@@ -1,12 +1,13 @@
 package com.ericarias.quiz.Model;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Question implements Serializable {
 
     private int id;
     private String question;
-    private String[] answers;
+    private List<String> answers;
     private String theme;
     private String user;
 
@@ -17,7 +18,7 @@ public class Question implements Serializable {
      * @param theme
      * @param user
      */
-    public Question(String question, String[] answers, String theme, String user) {
+    public Question(String question, List<String> answers, String theme, String user) {
         this.question = question;
         this.theme = theme;
         this.user = user;
@@ -33,7 +34,7 @@ public class Question implements Serializable {
      * @param theme
      * @param user
      */
-    public Question(int id, String question, String[] answers, String theme, String user) {
+    public Question(int id, String question, List<String> answers, String theme, String user) {
         this.id = id;
         this.question = question;
         this.answers = answers;
@@ -57,11 +58,11 @@ public class Question implements Serializable {
         this.question = question;
     }
 
-    public String[] getAnswers() {
+    public List<String> getAnswers() {
         return answers;
     }
 
-    public void setAnswers(String[] answers) {
+    public void setAnswers(List<String> answers) {
         this.answers = answers;
     }
 
