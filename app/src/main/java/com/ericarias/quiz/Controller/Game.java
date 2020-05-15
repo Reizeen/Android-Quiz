@@ -2,19 +2,24 @@ package com.ericarias.quiz.Controller;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.content.ContextCompat;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
+import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ericarias.quiz.Model.Question;
 import com.ericarias.quiz.R;
 
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -22,15 +27,24 @@ public class Game extends AppCompatActivity {
 
     private ConstraintLayout constraintLayout;
     private LinearLayout linearTheme;
-    private TextView textTema;
-    private ProgressBar progressBar;
+    private TextView textTheme;
     private TextView textQuestion;
     private Button optionOne;
     private Button optionTwo;
     private Button optionThree;
     private Button optionFour;
 
+    private ProgressBar progressBar;
+    private int progressStatus = 0;
+    private Handler handler = new Handler();
+
+    private ImageView bgResult;
+    private TextView resultQuestion;
+    private Button btnNext;
+
     private ArrayList<Question> questions;
+    private ArrayList<Integer> correctAnswers;
+    private int position;
 
 
     @Override
@@ -40,23 +54,52 @@ public class Game extends AppCompatActivity {
 
         constraintLayout = findViewById(R.id.layoutGame);
         linearTheme = findViewById(R.id.linearTheme);
-        textTema = findViewById(R.id.textTheme);
-        progressBar = findViewById(R.id.progressBarGame);
+        textTheme = findViewById(R.id.textTheme);
         textQuestion = findViewById(R.id.textQuestionGame);
         optionOne = findViewById(R.id.optionOne);
         optionTwo = findViewById(R.id.optionTwo);
         optionThree = findViewById(R.id.optionThree);
         optionFour = findViewById(R.id.optionFour);
 
+        progressBar = findViewById(R.id.progressBarGame);
+
+
+        bgResult = findViewById(R.id.bgResult);
+        resultQuestion = findViewById(R.id.resultQuestion);
+        btnNext = findViewById(R.id.btnNext);
+
+        position = 0;
         questions = (ArrayList<Question>) getIntent().getSerializableExtra("questions");
+        correctAnswers = new ArrayList<>();
+
         loadActivity();
-        loadQuestion();
+        loadQuestion(position);
+        progressBarStart();
+        onClickOptions();
     }
 
 
+    /**
+     * Temporizador
+     * "En contruccion"
+     */
+    public void progressBarStart(){
+        new Thread(() -> {
+            while (progressStatus < 100){
+                progressStatus++;
+                android.os.SystemClock.sleep(50);
+                handler.post(() -> progressBar.setProgress(progressStatus));
+            }
+        });
+    }
+
+
+    /**
+     * Cargar el diseño de la actividad según el tema
+     */
     private void loadActivity() {
-        textTema.setText(questions.get(0).getTheme().toUpperCase());
-        switch (questions.get(0).getTheme()){
+        textTheme.setText(questions.get(position).getTheme().toUpperCase());
+        switch (questions.get(position).getTheme()){
             case "Arte":
                 constraintLayout.setBackgroundResource(R.drawable.background_art);
                 linearTheme.setBackgroundResource(R.color.colorART);
@@ -93,13 +136,171 @@ public class Game extends AppCompatActivity {
         }
     }
 
-    private void loadQuestion() {
-        textQuestion.setText(questions.get(0).getQuestion());
-        List<String> answers = questions.get(0).getAnswers();
-        Collections.shuffle(answers);
-        optionOne.setText(answers.get(0));
-        optionTwo.setText(answers.get(1));
-        optionThree.setText(answers.get(2));
-        optionFour.setText(answers.get(3));
+    /**
+     * Carga la pregunta y las opciones del juego
+     * Crea una nueva lista para establecer las opciones
+     * de manera aleatoria.
+     */
+    private void loadQuestion(int pos) {
+        textQuestion.setText(questions.get(pos).getQuestion());
+
+        ArrayList<String> options = new ArrayList<>();
+        for (int x = 0; x < 4; x++)
+            options.add(questions.get(pos).getAnswers().get(x));
+        Collections.shuffle(options);
+
+        optionOne.setText(options.get(0));
+        optionTwo.setText(options.get(1));
+        optionThree.setText(options.get(2));
+        optionFour.setText(options.get(3));
+    }
+
+
+    /**
+     * Eventos onClick para cada una de las opciones
+     */
+    public void onClickOptions(){
+        optionOne.setOnClickListener(v -> checkAnswer(optionOne.getText().toString()));
+        optionTwo.setOnClickListener(v -> checkAnswer(optionTwo.getText().toString()));
+        optionThree.setOnClickListener(v -> checkAnswer(optionThree.getText().toString()));
+        optionFour.setOnClickListener(v -> checkAnswer(optionFour.getText().toString()));
+    }
+
+    /**
+     * Mostrar resultado de la pregunta
+     */
+    private void showResult(boolean show) {
+        int visibility = show ? View.VISIBLE : View.GONE;
+        bgResult.setVisibility(visibility);
+        resultQuestion.setVisibility(visibility);
+        btnNext.setVisibility(visibility);
+    }
+
+    /**
+     * Comprobar la opcion marcada con la respuesta correcta.
+     * La respuesta correcta es la respuesta posicionada en 0
+     * de la lista de la question.
+     * @param answer
+     */
+    public void checkAnswer(String answer){
+        if (answer.equals(questions.get(0).getAnswers().get(0))){
+            resultQuestion.setText("CORRECTO");
+            resultQuestion.setTextColor(Color.GREEN);
+            showResult(true);
+            correctAnswers.add(1);
+        } else {
+            resultQuestion.setText("INCORRECTO");
+            resultQuestion.setTextColor(Color.RED);
+            showResult(true);
+            correctAnswers.add(0);
+        }
+    }
+
+    /**
+     * Evento onClick de avanzar a la siguiente pegunta
+     * o terminar el juego.
+     * @param view
+     */
+    public void nextQuestion(View view){
+        if (position == 4){
+            finish();
+        } else {
+            position++;
+            loadQuestion(position);
+            showResult(false);
+        }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

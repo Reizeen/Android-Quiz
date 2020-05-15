@@ -191,6 +191,7 @@ public class Login extends AppCompatActivity {
     public void onClickGoRegister(View view){
         Intent intent = new Intent(getApplicationContext(), Register.class);
         startActivityForResult(intent, Utilities.COD_REGISTER);
+        errorAuth(false);
     }
 
     @Override

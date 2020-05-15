@@ -38,8 +38,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="18sp"
+        android:progress="0"
         android:progressTint="@color/colorAccent"
-        android:progress="50"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearTheme" />
@@ -48,69 +48,115 @@
         android:id="@+id/textQuestionGame"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/border_text"
-        android:layout_marginTop="50dp"
         android:layout_marginLeft="40dp"
+        android:layout_marginTop="50dp"
         android:layout_marginRight="40dp"
-        android:textSize="20dp"
+        android:background="@drawable/border_text"
         android:gravity="center"
         android:hint="Enunciado de la pregunta"
         android:lines="8"
         android:textColor="@color/colorPrimaryDark"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearTheme" />
 
-    <Button
-        android:id="@+id/optionOne"
+    <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:background="@drawable/btn_answer"
-        android:text="RESPUESTA 1"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textQuestionGame" />
+        app:layout_constraintTop_toBottomOf="@+id/textQuestionGame">
+
+        <Button
+            android:id="@+id/optionOne"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginRight="40dp"
+            android:background="@drawable/btn_answer"
+            android:text="RESPUESTA 1" />
+
+        <Button
+            android:id="@+id/optionTwo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="40dp"
+            android:background="@drawable/btn_answer"
+            android:text="RESPUESTA 2" />
+
+        <Button
+            android:id="@+id/optionThree"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="40dp"
+            android:background="@drawable/btn_answer"
+            android:text="RESPUESTA 3" />
+
+        <Button
+            android:id="@+id/optionFour"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="40dp"
+            android:background="@drawable/btn_answer"
+            android:text="RESPUESTA 4" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/bgResult"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:alpha="0.8"
+        android:src="#000000"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/resultQuestion"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="100dp"
+        android:fontFamily="casual"
+        android:gravity="center"
+        android:text="CORRECTO"
+        android:textColor="@color/colorGreen"
+        android:textSize="50dp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/optionTwo"
+        android:id="@+id/btnNext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
+        android:layout_marginTop="75dp"
+        android:layout_marginRight="100dp"
+        android:layout_marginLeft="100dp"
+        android:text="CONTINUAR"
+        android:textSize="20dp"
         android:background="@drawable/btn_answer"
-        android:text="RESPUESTA 2"
+        android:visibility="gone"
+        android:onClick="nextQuestion"
+        app:layout_constraintBottom_toBottomOf="@+id/bgResult"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/optionOne" />
-
-    <Button
-        android:id="@+id/optionThree"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:background="@drawable/btn_answer"
-        android:text="RESPUESTA 3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/optionTwo" />
-
-    <Button
-        android:id="@+id/optionFour"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:background="@drawable/btn_answer"
-        android:text="RESPUESTA 4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/optionThree" />
+        app:layout_constraintTop_toTopOf="@+id/resultQuestion" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
