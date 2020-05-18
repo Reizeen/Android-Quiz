@@ -3,6 +3,7 @@ package com.ericarias.quiz.Controller;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -13,17 +14,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.ericarias.quiz.Model.Question;
 import com.ericarias.quiz.R;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 
-public class Game extends AppCompatActivity {
+public class Quiz extends AppCompatActivity {
 
     private ConstraintLayout constraintLayout;
     private LinearLayout linearTheme;
@@ -44,6 +40,7 @@ public class Game extends AppCompatActivity {
 
     private ArrayList<Question> questions;
     private ArrayList<Integer> correctAnswers;
+    private ArrayList<String> responseResult;
     private int position;
 
 
@@ -71,6 +68,7 @@ public class Game extends AppCompatActivity {
         position = 0;
         questions = (ArrayList<Question>) getIntent().getSerializableExtra("questions");
         correctAnswers = new ArrayList<>();
+        responseResult = new ArrayList<>();
 
         loadActivity();
         loadQuestion(position);
@@ -177,17 +175,21 @@ public class Game extends AppCompatActivity {
     }
 
     /**
-     * Comprobar la opcion marcada con la respuesta correcta.
-     * La respuesta correcta es la respuesta posicionada en 0
-     * de la lista de la question.
+     * Almacena la opcion elegida por el usuario.
+     * Comprueba la opcion marcada con la respuesta correcta.
+     * La respuesta correcta está en la posicion 0
+     * del array 'questions'.
      * @param answer
      */
     public void checkAnswer(String answer){
-        if (answer.equals(questions.get(0).getAnswers().get(0))){
+        responseResult.add(answer);
+
+        if (answer.equals(questions.get(position).getAnswers().get(0))){
             resultQuestion.setText("CORRECTO");
             resultQuestion.setTextColor(Color.GREEN);
             showResult(true);
             correctAnswers.add(1);
+
         } else {
             resultQuestion.setText("INCORRECTO");
             resultQuestion.setTextColor(Color.RED);
@@ -203,6 +205,11 @@ public class Game extends AppCompatActivity {
      */
     public void nextQuestion(View view){
         if (position == 4){
+            Intent intent = new Intent(getApplicationContext(), EndQuiz.class);
+            intent.putExtra("questions", questions);
+            intent.putExtra("correctAnswers", correctAnswers);
+            intent.putExtra("responseResult", responseResult);
+            startActivity(intent);
             finish();
         } else {
             position++;

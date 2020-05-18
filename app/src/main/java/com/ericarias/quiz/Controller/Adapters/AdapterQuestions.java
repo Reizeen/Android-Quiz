@@ -97,26 +97,20 @@ public class AdapterQuestions extends RecyclerView.Adapter<AdapterQuestions.View
             editQuest = itemView.findViewById(R.id.editQuest);
             deleteQuest = itemView.findViewById(R.id.deleteQuest);
 
-            editQuest.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (listener != null){
-                        int position = getAdapterPosition();
-                        if (position != RecyclerView.NO_POSITION){
-                            listener.onEditClick(position);
-                        }
+            editQuest.setOnClickListener(v -> {
+                if (listener != null){
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION){
+                        listener.onEditClick(position);
                     }
                 }
             });
 
-            deleteQuest.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (listener != null){
-                        int position = getAdapterPosition();
-                        if (position != RecyclerView.NO_POSITION){
-                            listener.onDeleteClick(position);
-                        }
+            deleteQuest.setOnClickListener(v -> {
+                if (listener != null){
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION){
+                        listener.onDeleteClick(position);
                     }
                 }
             });

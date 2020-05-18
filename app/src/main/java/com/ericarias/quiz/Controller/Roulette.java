@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
@@ -116,7 +115,7 @@ public class Roulette extends AppCompatActivity implements Animation.AnimationLi
 
                 ArrayList<Question> questions = new ArrayList<>(response.body());
                 Toast.makeText(Roulette.this, questions.get(0).getTheme(), Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(), Game.class);
+                Intent intent = new Intent(getApplicationContext(), Quiz.class);
                 intent.putExtra("questions", questions);
                 startActivity(intent);
                 finish();

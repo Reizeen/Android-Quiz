@@ -32,7 +32,7 @@
             android:textSize="15dp"
             android:layout_weight="1"/>
 
-        <ImageView
+            <ImageView
                 android:id="@+id/editQuest"
                 android:layout_width="30dp"
                 android:layout_height="40dp"
