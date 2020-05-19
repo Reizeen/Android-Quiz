@@ -18,6 +18,10 @@ public class Main extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+    /**
+     * Evento onClick para Cerrar Sesion
+     * @param view
+     */
     public void signOff(View view) {
         SharedPreferences preferences = getSharedPreferences("credenciales", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
@@ -32,21 +36,37 @@ public class Main extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /**
+     * Evento onClick para añadir pregunta
+     * @param view
+     */
     public void addQuestion(View view) {
         Intent intent = new Intent(getApplicationContext(), AddQuestion.class);
         startActivity(intent);
     }
 
+    /**
+     * Evento onClick para ver el ranking
+     * @param view
+     */
     public void viewPoints(View view) {
         Intent intent = new Intent(getApplicationContext(), Ranking.class);
         startActivity(intent);
     }
 
+    /**
+     * Evento onClick para ver las preguntas del usuario conectado
+     * @param view
+     */
     public void viewQuestions(View view) {
         Intent intent = new Intent(getApplicationContext(), ViewQuestions.class);
         startActivity(intent);
     }
 
+    /**
+     * Evento onClick para iniciar el Quiz
+     * @param view
+     */
     public void startGame(View view) {
         Intent intent = new Intent(getApplicationContext(), Roulette.class);
         startActivity(intent);

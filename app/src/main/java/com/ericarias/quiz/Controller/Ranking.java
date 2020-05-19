@@ -33,9 +33,6 @@ public class Ranking extends AppCompatActivity {
     private TextView textUsername;
     private TextView textPoints;
 
-    private String token;
-    private String username;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,19 +46,15 @@ public class Ranking extends AppCompatActivity {
         textPosUser = findViewById(R.id.posUserRanking);
         textUsername = findViewById(R.id.userNameRanking);
 
-        loadAuth();
         getPoints();
     }
 
-    public void loadAuth() {
-        SharedPreferences preferences = getSharedPreferences("credenciales", Context.MODE_PRIVATE);
-        token = preferences.getString("token", "null");
-        username = preferences.getString("name", "null");
-    }
-
+    /**
+     * Llamada GET para obtener todos los puntos del la BD
+     */
     public void getPoints(){
         WebServiceClient client = Utilities.myRetrofit().create(WebServiceClient.class);
-        client.allPoints(token).enqueue(new Callback<List<Points>>() {
+        client.allPoints(Utilities.getToken(this)).enqueue(new Callback<List<Points>>() {
             @Override
             public void onResponse(Call<List<Points>> call, Response<List<Points>> response) {
                 if(!response.isSuccessful()){
@@ -81,9 +74,12 @@ public class Ranking extends AppCompatActivity {
         });
     }
 
+    /**
+     * Metodo para obtener los puntos del usuario conectado
+     */
     public void getPointsUser(){
         for (Points p : pointsList) {
-            if (p.getName().equals(username)){
+            if (p.getName().equals(Utilities.getUsername(this))){
                 textUsername.setText("Tu posicion " + p.getName());
                 textPosUser.setText(String.valueOf(pointsList.indexOf(p) + 1));
                 textPoints.setText("Puntos: " + p.getPoints());

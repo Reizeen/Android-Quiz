@@ -2,6 +2,7 @@ package com.ericarias.quiz.Interface;
 
 import com.ericarias.quiz.Model.Points;
 import com.ericarias.quiz.Model.Question;
+import com.ericarias.quiz.Model.Report;
 import com.ericarias.quiz.Model.ResponseServer;
 import com.ericarias.quiz.Model.User;
 
@@ -50,5 +51,13 @@ public interface WebServiceClient {
     @GET("quiz/{idTheme}")
     Call<List<Question>> gameQuestions(@Header("token") String token,
                                        @Path("idTheme") String idTheme);
+
+    @PUT("points")
+    Call<ResponseServer> addPoints(@Header("token") String token,
+                                   @Body Points points);
+
+    @POST("report")
+    Call<ResponseServer> addReport(@Header("token") String token,
+                                   @Body Report report);
 
 }

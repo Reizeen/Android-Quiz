@@ -48,11 +48,10 @@ public class Roulette extends AppCompatActivity implements Animation.AnimationLi
         degree = 0;
     }
 
-    public String getToken() {
-        SharedPreferences preferences = getSharedPreferences("credenciales", Context.MODE_PRIVATE);
-        return preferences.getString("token", "null");
-    }
-
+    /**
+     * Evento onClick para animar la ruleta
+     * @param view
+     */
     public void spinRoulette(View view) {
         degree = new Random().nextInt(3600) + 72;
         RotateAnimation rotateAnimation = new RotateAnimation(0, degree, RotateAnimation.RELATIVE_TO_SELF,
@@ -67,6 +66,10 @@ public class Roulette extends AppCompatActivity implements Animation.AnimationLi
     @Override
     public void onAnimationStart(Animation animation) { }
 
+    /**
+     * Metodo aplicable al terminar la animacion
+     * @param animation
+     */
     @Override
     public void onAnimationEnd(Animation animation) {
         int num = 360 - (degree % 360);
@@ -76,6 +79,11 @@ public class Roulette extends AppCompatActivity implements Animation.AnimationLi
     @Override
     public void onAnimationRepeat(Animation animation) { }
 
+    /**
+     * Muestra el resultado de tema obtenido
+     * @param num
+     * @return
+     */
     private String resultado(int num) {
         String result = null;
         Log.e(null, "resultado: " + num);
@@ -102,10 +110,13 @@ public class Roulette extends AppCompatActivity implements Animation.AnimationLi
     }
 
 
+    /**
+     * Llamada GET para obtener las pregunta ssegun el tema obtenido
+     * @param idTheme
+     */
     public void getQuestions(String idTheme){
-        Log.e(null, "getQuestions: " + idTheme );
         WebServiceClient client = Utilities.myRetrofit().create(WebServiceClient.class);
-        client.gameQuestions(getToken(), idTheme).enqueue(new Callback<List<Question>>() {
+        client.gameQuestions(Utilities.getToken(this), idTheme).enqueue(new Callback<List<Question>>() {
             @Override
             public void onResponse(Call<List<Question>> call, Response<List<Question>> response) {
                 if (!response.isSuccessful()) {

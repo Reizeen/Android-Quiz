@@ -11,7 +11,7 @@
         android:id="@+id/titleViewQuestions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30sp"
         android:textAlignment="center"
         android:visibility="visible"
         android:text="MIS PREGUNTAS"
@@ -36,7 +36,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="visible"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="10dp"/>
 
     <LinearLayout
         android:id="@+id/questions_progress"

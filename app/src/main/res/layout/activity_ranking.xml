@@ -24,7 +24,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="10dp"
         android:layout_marginRight="30dp"
         app:cardBackgroundColor="@color/colorPrimaryDark"
         app:cardCornerRadius="20dp">
@@ -32,18 +31,18 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="4dp">
+            android:layout_margin="1dp">
 
             <TextView
                 android:id="@+id/posUserRanking"
                 android:layout_width="70dp"
-                android:layout_height="60dp"
-                android:layout_marginTop="5dp"
+                android:layout_height="50dp"
+                android:paddingTop="3dp"
                 android:fontFamily="casual"
-                android:padding="2dp"
                 android:textAlignment="center"
+                android:text="1"
+                android:autoSizeTextType="uniform"
                 android:textColor="@color/colorAccent"
-                android:textSize="35dp"
                 android:textStyle="bold" />
 
             <TextView
@@ -54,9 +53,9 @@
                 android:layout_alignParentTop="true"
                 android:layout_toEndOf="@+id/posUserRanking"
                 android:fontFamily="casual"
+                android:text="Tu posicion usuarioxxxx"
                 android:textColor="@color/colorAccent"
-                android:textSize="20dp"
-                android:autoSizeTextType="uniform"
+                android:textSize="15dp"
                 android:textStyle="bold" />
 
             <TextView
@@ -65,10 +64,11 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/userNameRanking"
                 android:layout_toEndOf="@+id/posUserRanking"
-                android:layout_marginTop="3dp"
+                android:text="Puntos: 123456789"
                 android:fontFamily="casual"
+                android:textStyle="bold"
                 android:textColor="@color/colorAccent"
-                android:textSize="15sp" />
+                android:textSize="13dp" />
 
         </RelativeLayout>
 
@@ -80,11 +80,6 @@
         android:layout_height="match_parent"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
-        android:scrollbarAlwaysDrawVerticalTrack="true"
-        android:scrollbarSize="5dp"
-        android:scrollbarStyle="outsideInset"
-        android:scrollbarThumbVertical="@color/colorScrollBar"
-        android:scrollbars="vertical"
-        android:verticalScrollbarPosition="right"/>
+        android:background="#45E4F0F0"/>
 
 </LinearLayout>

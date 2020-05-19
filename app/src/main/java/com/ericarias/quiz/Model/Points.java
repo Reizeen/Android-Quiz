@@ -6,10 +6,26 @@ public class Points {
     private int points;
     private String name;
 
+    /**
+     * Constructor general
+     * @param id
+     * @param points
+     * @param name
+     */
     public Points(int id, int points, String name) {
         this.id = id;
         this.points = points;
         this.name = name;
+    }
+
+    /**
+     * Constructor para añadir puntos
+     * @param id
+     * @param points
+     */
+    public Points(int id, int points) {
+        this.id = id;
+        this.points = points;
     }
 
     public int getId() {

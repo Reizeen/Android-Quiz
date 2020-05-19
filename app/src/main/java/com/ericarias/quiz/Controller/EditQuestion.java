@@ -56,11 +56,9 @@ public class EditQuestion extends AppCompatActivity {
         loadQuestion();
     }
 
-    public String getToken() {
-        SharedPreferences preferences = getSharedPreferences("credenciales", Context.MODE_PRIVATE);
-        return preferences.getString("token", "null");
-    }
-
+    /**
+     * Cargar la informacion de la pregunta en la actividad
+     */
     private void loadQuestion() {
         textQuestion.setText(question.getQuestion());
         textCorrect.setText(question.getAnswers().get(0));
@@ -72,6 +70,9 @@ public class EditQuestion extends AppCompatActivity {
         selectTheme.setSelection(pos);
     }
 
+    /**
+     * Guardar la informacion de la pregunta
+     */
     private void saveQuestion() {
         List<String> answers = Arrays.asList(
                 textCorrect.getText().toString(),
@@ -85,10 +86,13 @@ public class EditQuestion extends AppCompatActivity {
         question.setTheme(selectTheme.getSelectedItem().toString());
     }
 
+    /**
+     * Llamada PUT para modificar la pregunta
+     */
     private void editQuestion(){
         saveQuestion();
         WebServiceClient client = Utilities.myRetrofit().create(WebServiceClient.class);
-        client.editQuestion(getToken(), question).enqueue(new Callback<ResponseServer>() {
+        client.editQuestion(Utilities.getToken(this), question).enqueue(new Callback<ResponseServer>() {
             @Override
             public void onResponse(Call<ResponseServer> call, Response<ResponseServer> response) {
                 if (!response.isSuccessful()){
@@ -110,6 +114,11 @@ public class EditQuestion extends AppCompatActivity {
     }
 
 
+    /**
+     * Evento onClick para llamar al metodo editQuestion
+     * controlando que los campos no esten vacios
+     * @param view
+     */
     public void onClickEditQuestion(View view) {
         if (textQuestion.getText().toString().isEmpty() || textCorrect.getText().toString().isEmpty() || textIncorrectOne.getText().toString().isEmpty() || textIncorrectTwo.getText().toString().isEmpty() || textIncorrectThree.getText().toString().isEmpty())
             Toast.makeText(this, "Rellena todos los campos", Toast.LENGTH_LONG).show();

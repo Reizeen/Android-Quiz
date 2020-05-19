@@ -21,30 +21,22 @@ import retrofit2.Callback;
 
 public class Start extends AppCompatActivity {
 
-    private int id;
-    private String token;
     private TextView errorStart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
-
         errorStart = findViewById(R.id.errorStart);
-
-        loadAuth();
         comprobarSesion();
     }
 
-    public void loadAuth() {
-        SharedPreferences preferences = getSharedPreferences("credenciales", Context.MODE_PRIVATE);
-        id = preferences.getInt("id", 0);
-        token = preferences.getString("token", "null");
-    }
-
+    /**
+     * Comprueba si hay una sesion creada con anterioridad a través del token
+     */
     public void comprobarSesion() {
         WebServiceClient client = Utilities.myRetrofit().create(WebServiceClient.class);
-        client.session(new User(id, token)).enqueue(new Callback<ResponseServer>() {
+        client.session(new User(Utilities.getUserID(this), Utilities.getToken(this))).enqueue(new Callback<ResponseServer>() {
             @Override
             public void onResponse(Call<ResponseServer> call, retrofit2.Response<ResponseServer> response) {
                 if (!response.isSuccessful())

@@ -38,8 +38,6 @@ public class ViewQuestions extends AppCompatActivity {
     private LinearLayout progress;
     private TextView titleQuestions;
 
-    private int id;
-    private String token;
     private int position;
 
     @Override
@@ -53,14 +51,7 @@ public class ViewQuestions extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerQuestions);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        loadAuth();
         getQuestions();
-    }
-
-    public void loadAuth() {
-        SharedPreferences preferences = getSharedPreferences("credenciales", Context.MODE_PRIVATE);
-        token = preferences.getString("token", "null");
-        id = preferences.getInt("id", 0);
     }
 
     /**
@@ -75,10 +66,13 @@ public class ViewQuestions extends AppCompatActivity {
         recyclerView.setVisibility(gone);
     }
 
+    /**
+     * Llamada GET para mostrar todas las preguntas del usuario conectado
+     */
     private void getQuestions() {
         showProgress(true);
         WebServiceClient client = Utilities.myRetrofit().create(WebServiceClient.class);
-        client.userQuestions(token, id).enqueue(new Callback<List<Question>>() {
+        client.userQuestions(Utilities.getToken(this), Utilities.getUserID(this)).enqueue(new Callback<List<Question>>() {
             @Override
             public void onResponse(Call<List<Question>> call, Response<List<Question>> response) {
                 showProgress(false
@@ -117,7 +111,11 @@ public class ViewQuestions extends AppCompatActivity {
         });
     }
 
-
+    /**
+     * Evento onClick para abrir la actividad para
+     * modificar una pregunta especifica
+     * @param position
+     */
     public void editQuestion(int position){
         this.position = position;
         Question question = questions.get(position);
@@ -126,10 +124,14 @@ public class ViewQuestions extends AppCompatActivity {
         startActivityForResult(intent, Utilities.COD_EDIT_QUESTION);
     }
 
+    /**
+     * Evento onClick para borrar una pregunta especifica
+     * @param position
+     */
     public void deleteQuestion(int position){
         Question question = questions.get(position);
         WebServiceClient client = Utilities.myRetrofit().create(WebServiceClient.class);
-        client.deleteQuestion(token, question.getId()).enqueue(new Callback<ResponseServer>() {
+        client.deleteQuestion(Utilities.getToken(this), question.getId()).enqueue(new Callback<ResponseServer>() {
             @Override
             public void onResponse(Call<ResponseServer> call, Response<ResponseServer> response) {
                 if (!response.isSuccessful()) {
@@ -148,6 +150,12 @@ public class ViewQuestions extends AppCompatActivity {
         });
     }
 
+    /**
+     * Actualiza el RecyclerView si se ha modificado una pregunta
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

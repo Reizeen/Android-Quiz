@@ -34,8 +34,7 @@ public class AddQuestion extends AppCompatActivity {
     private EditText textIncorrectTwo;
     private EditText textIncorrectThree;
     private Spinner selectTheme;
-    private String username;
-    private String token;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,17 +50,6 @@ public class AddQuestion extends AppCompatActivity {
         selectTheme = findViewById(R.id.addTheme);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.themes, R.layout.support_simple_spinner_dropdown_item);
         selectTheme.setAdapter(adapter);
-
-        loadAuth();
-    }
-
-    /**
-     * Cargar id del usuario
-     */
-    public void loadAuth() {
-        SharedPreferences preferences = getSharedPreferences("credenciales", Context.MODE_PRIVATE);
-        username = preferences.getString("name", "null");
-        token = preferences.getString("token", "null");
     }
 
     /**
@@ -80,10 +68,10 @@ public class AddQuestion extends AppCompatActivity {
                 textQuestion.getText().toString(),
                 answers,
                 selectTheme.getSelectedItem().toString(),
-                username);
+                Utilities.getUsername(this));
 
         WebServiceClient client = Utilities.myRetrofit().create(WebServiceClient.class);
-        client.addQuestion(token, question).enqueue(new Callback<ResponseServer>() {
+        client.addQuestion(Utilities.getToken(this), question).enqueue(new Callback<ResponseServer>() {
             @Override
             public void onResponse(Call<ResponseServer> call, retrofit2.Response<ResponseServer> response) {
                 if (!response.isSuccessful()){

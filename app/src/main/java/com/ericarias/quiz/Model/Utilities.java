@@ -2,8 +2,11 @@ package com.ericarias.quiz.Model;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -52,5 +55,20 @@ public class Utilities {
                 .build();
 
         return retrofit;
+    }
+
+    public static int getUserID(Context context) {
+        SharedPreferences preferences = context.getSharedPreferences("credenciales", Context.MODE_PRIVATE);
+        return preferences.getInt("id", 0);
+    }
+
+    public static String getToken(Context context) {
+        SharedPreferences preferences = context.getSharedPreferences("credenciales", Context.MODE_PRIVATE);
+        return preferences.getString("token", "null");
+    }
+
+    public static String getUsername(Context context) {
+        SharedPreferences preferences = context.getSharedPreferences("credenciales", Context.MODE_PRIVATE);
+        return preferences.getString("name", "null");
     }
 }
