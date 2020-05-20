@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -30,9 +29,11 @@ public class Quiz extends AppCompatActivity {
     private Button optionThree;
     private Button optionFour;
 
+    private final int MAX_SECONDS = 20;
     private ProgressBar progressBar;
-    private int progressStatus = 0;
-    private Handler handler = new Handler();
+    private int progressStatus;
+    private Handler handler;
+    private TextView textTime;
 
     private ImageView bgResult;
     private TextView resultQuestion;
@@ -47,7 +48,7 @@ public class Quiz extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game);
+        setContentView(R.layout.activity_quiz);
 
         constraintLayout = findViewById(R.id.layoutGame);
         linearTheme = findViewById(R.id.linearTheme);
@@ -59,6 +60,8 @@ public class Quiz extends AppCompatActivity {
         optionFour = findViewById(R.id.optionFour);
 
         progressBar = findViewById(R.id.progressBarGame);
+        handler = new Handler();
+        textTime = findViewById(R.id.textTime);
 
         bgResult = findViewById(R.id.bgResult);
         resultQuestion = findViewById(R.id.resultQuestion);
@@ -70,7 +73,7 @@ public class Quiz extends AppCompatActivity {
         responseResult = new ArrayList<>();
 
         loadActivity();
-        loadQuestion(position);
+        loadQuestion();
         progressBarStart();
         onClickOptions();
     }
@@ -80,14 +83,32 @@ public class Quiz extends AppCompatActivity {
      * Temporizador
      * "En contruccion"
      */
-    public void progressBarStart(){
-        new Thread(() -> {
-            while (progressStatus < 100){
+    public void progressBarStart() {
+        progressStatus = 0;
+        progressBar.setMax(MAX_SECONDS);
+        Thread progressThread = new Thread(() -> {
+            while (progressStatus <= MAX_SECONDS){
+                handler.post(() -> {
+                    progressBar.setProgress(progressStatus);
+                    textTime.setText(String.valueOf(MAX_SECONDS - progressStatus));
+
+                    if (progressStatus == MAX_SECONDS){
+                        resultQuestion.setText("TIEMPO");
+                        resultQuestion.setTextColor(Color.RED);
+                        showResult(true);
+                        correctAnswers.add(0);
+                    }
+                });
+
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 progressStatus++;
-                android.os.SystemClock.sleep(50);
-                handler.post(() -> progressBar.setProgress(progressStatus));
             }
         });
+        progressThread.start();
     }
 
 
@@ -138,12 +159,12 @@ public class Quiz extends AppCompatActivity {
      * Crea una nueva lista para establecer las opciones
      * de manera aleatoria.
      */
-    private void loadQuestion(int pos) {
-        textQuestion.setText(questions.get(pos).getQuestion());
+    private void loadQuestion() {
+        textQuestion.setText(questions.get(position).getQuestion());
 
         ArrayList<String> options = new ArrayList<>();
         for (int x = 0; x < 4; x++)
-            options.add(questions.get(pos).getAnswers().get(x));
+            options.add(questions.get(position).getAnswers().get(x));
         Collections.shuffle(options);
 
         optionOne.setText(options.get(0));
@@ -195,6 +216,9 @@ public class Quiz extends AppCompatActivity {
             showResult(true);
             correctAnswers.add(0);
         }
+
+        // Detener el hilo del temporizador
+        progressStatus = MAX_SECONDS;
     }
 
     /**
@@ -212,8 +236,9 @@ public class Quiz extends AppCompatActivity {
             finish();
         } else {
             position++;
-            loadQuestion(position);
+            loadQuestion();
             showResult(false);
+            progressBarStart();
         }
     }
 }
