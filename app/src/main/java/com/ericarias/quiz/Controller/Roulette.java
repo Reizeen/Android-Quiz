@@ -2,9 +2,7 @@ package com.ericarias.quiz.Controller;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -31,6 +29,7 @@ public class Roulette extends AppCompatActivity implements Animation.AnimationLi
 
     private int degree;
     private ImageView ruleta;
+
     private final int MATEMATICAS = 45;
     private final int HISTORIA = 90;
     private final int ARTE = 135;

@@ -11,6 +11,8 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
@@ -59,5 +61,15 @@ public interface WebServiceClient {
     @POST("report")
     Call<ResponseServer> addReport(@Header("token") String token,
                                    @Body Report report);
+
+    @GET("user/{id}")
+    Call<User>getUser(@Header("token") String token,
+                      @Path("id") int idUser);
+    @FormUrlEncoded
+    @PUT("user")
+    Call<ResponseServer> modPass(@Header("token") String token,
+                                 @Field("user") String user,
+                                 @Field("pass") String pass,
+                                 @Field("new_pass") String new_pass);
 
 }

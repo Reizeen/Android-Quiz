@@ -1,13 +1,14 @@
 package com.ericarias.quiz.Controller;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,9 +30,15 @@ public class Ranking extends AppCompatActivity {
     private ArrayList<Points> pointsList;
     private AdapterRanking adapterRanking;
     private RecyclerView recyclerView;
+
+    private TextView titleRanking;
     private TextView textPosUser;
     private TextView textUsername;
     private TextView textPoints;
+
+    private CardView cardViewUser;
+    private LinearLayout linearLayoutPorgress;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,17 +49,35 @@ public class Ranking extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
 
+        titleRanking = findViewById(R.id.titleRanking);
         textPoints = findViewById(R.id.pointsUserRanking);
         textPosUser = findViewById(R.id.posUserRanking);
         textUsername = findViewById(R.id.userNameRanking);
 
+        cardViewUser = findViewById(R.id.cardViewUserRanking);
+        linearLayoutPorgress = findViewById(R.id.rankingProgress);
+
         getPoints();
+    }
+
+    /**
+     * Mostrar progress bar y ocultar el contenido de activity_ranking
+     */
+    private void showProgress(boolean show) {
+        int gone = show ? View.GONE : View.VISIBLE;
+        int visibility = show ? View.VISIBLE : View.GONE;
+
+        linearLayoutPorgress.setVisibility(visibility);
+        titleRanking.setVisibility(gone);
+        cardViewUser.setVisibility(gone);
+        recyclerView.setVisibility(gone);
     }
 
     /**
      * Llamada GET para obtener todos los puntos del la BD
      */
     public void getPoints(){
+        showProgress(true);
         WebServiceClient client = Utilities.myRetrofit().create(WebServiceClient.class);
         client.allPoints(Utilities.getToken(this)).enqueue(new Callback<List<Points>>() {
             @Override
@@ -65,6 +90,7 @@ public class Ranking extends AppCompatActivity {
                 adapterRanking = new AdapterRanking(Ranking.this, pointsList);
                 recyclerView.setAdapter(adapterRanking);
                 getPointsUser();
+                showProgress(false);
             }
 
             @Override

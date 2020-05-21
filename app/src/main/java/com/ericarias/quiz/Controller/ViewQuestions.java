@@ -5,9 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -45,7 +43,7 @@ public class ViewQuestions extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_questions);
 
-        progress = findViewById(R.id.questions_progress);
+        progress = findViewById(R.id.questionsProgress);
         titleQuestions = findViewById(R.id.titleViewQuestions);
         alert = findViewById(R.id.alertViewQuestions);
         recyclerView = findViewById(R.id.recyclerQuestions);
@@ -75,8 +73,7 @@ public class ViewQuestions extends AppCompatActivity {
         client.userQuestions(Utilities.getToken(this), Utilities.getUserID(this)).enqueue(new Callback<List<Question>>() {
             @Override
             public void onResponse(Call<List<Question>> call, Response<List<Question>> response) {
-                showProgress(false
-                );
+                showProgress(false);
                 if (!response.isSuccessful()) {
                     Toast.makeText(ViewQuestions.this, "ERROR " + response.code(), Toast.LENGTH_SHORT).show();
                     return;

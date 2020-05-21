@@ -1,22 +1,17 @@
 package com.ericarias.quiz.Controller;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.style.TtsSpan;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ericarias.quiz.Controller.Adapters.AdapterResultQuestion;
+import com.ericarias.quiz.Controller.Dialogs.ReportDialog;
 import com.ericarias.quiz.Interface.WebServiceClient;
 import com.ericarias.quiz.Model.Points;
 import com.ericarias.quiz.Model.Question;
@@ -25,13 +20,8 @@ import com.ericarias.quiz.Model.ResponseServer;
 import com.ericarias.quiz.Model.Utilities;
 import com.ericarias.quiz.R;
 
-import org.w3c.dom.Text;
-
-import java.security.PrivateKey;
 import java.util.ArrayList;
-import java.util.TreeMap;
 
-import okhttp3.internal.Util;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -95,7 +85,6 @@ public class EndQuiz extends AppCompatActivity implements ReportDialog.DialogLis
                     Toast.makeText(EndQuiz.this, "ERROR: " + response.code(), Toast.LENGTH_LONG).show();
                     return;
                 }
-
                 textPoints.setText("PUNTOS GANADOS: " + points);
             }
 

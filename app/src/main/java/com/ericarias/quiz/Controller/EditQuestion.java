@@ -2,9 +2,7 @@ package com.ericarias.quiz.Controller;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -29,13 +27,14 @@ import retrofit2.Response;
 public class EditQuestion extends AppCompatActivity {
 
     private Question question;
+    private Spinner selectTheme;
+    private ArrayAdapter<CharSequence> adapter;
+
     private EditText textQuestion;
     private EditText textCorrect;
     private EditText textIncorrectOne;
     private EditText textIncorrectTwo;
     private EditText textIncorrectThree;
-    private Spinner selectTheme;
-    private ArrayAdapter<CharSequence> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

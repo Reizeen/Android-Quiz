@@ -75,6 +75,7 @@
             android:layout_height="100dp"
             android:layout_marginTop="28dp"
             android:background="@drawable/btn_perfil"
+            android:onClick="viewProfile"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.78"
             app:layout_constraintStart_toStartOf="parent"

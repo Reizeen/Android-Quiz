@@ -1,4 +1,4 @@
-package com.ericarias.quiz.Controller;
+package com.ericarias.quiz.Controller.Dialogs;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -10,9 +10,6 @@ import android.view.View;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatDialogFragment;
-
-import com.ericarias.quiz.Interface.WebServiceClient;
-import com.ericarias.quiz.Model.Utilities;
 import com.ericarias.quiz.R;
 
 public class ReportDialog extends AppCompatDialogFragment {

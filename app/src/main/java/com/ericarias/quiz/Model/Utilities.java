@@ -1,12 +1,7 @@
 package com.ericarias.quiz.Model;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.view.View;
-import android.view.inputmethod.InputMethodManager;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -30,18 +25,6 @@ public class Utilities {
     public static final int COD_REGISTER = 101;
     public static final int COD_ADD_QUESTION = 102;
     public static final int COD_EDIT_QUESTION = 103;
-
-    /**
-     * Oculta el teclado
-     * @param context
-     * @param view
-     */
-    public static void hideKeyboard(Context context, View view) {
-        if (view != null){
-            InputMethodManager imm = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-        }
-    }
 
     public static Retrofit myRetrofit(){
         // Permite ver los datos que se envian y se reciben

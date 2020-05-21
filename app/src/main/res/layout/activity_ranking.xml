@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".Controller.Ranking">
 
@@ -20,7 +20,7 @@
         android:textColor="@color/colorPrimaryDark"/>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
+        android:id="@+id/cardViewUserRanking"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
@@ -81,5 +81,21 @@
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
         android:background="#45E4F0F0"/>
+
+    <LinearLayout
+        android:id="@+id/rankingProgress"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:visibility="visible"
+        android:orientation="vertical">
+
+        <ProgressBar
+            style="?android:attr/progressBarStyle"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:indeterminateTint="@color/colorPrimaryDark" />
+
+    </LinearLayout>
 
 </LinearLayout>

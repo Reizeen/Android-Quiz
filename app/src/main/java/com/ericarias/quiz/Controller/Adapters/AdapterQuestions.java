@@ -1,7 +1,5 @@
 package com.ericarias.quiz.Controller.Adapters;
 
-import android.content.ContentProvider;
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,13 +7,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ericarias.quiz.Model.Question;
 import com.ericarias.quiz.R;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 

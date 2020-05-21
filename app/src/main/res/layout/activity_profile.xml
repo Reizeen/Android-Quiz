@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#90EBEBEB"
+    tools:context=".Controller.Profile">
+
+    <RelativeLayout
+        android:id="@+id/relativeLayoutProfile1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30sp"
+        android:layout_marginRight="30sp"
+        android:layout_marginLeft="30sp"
+        android:background="#FFFFFF"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imgProfile"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:src="@drawable/ic_person" />
+
+        <TextView
+            android:id="@+id/textUserNameProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imgProfile"
+            android:layout_marginTop="-15dp"
+            android:layout_marginBottom="10sp"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="30sp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayoutProfile2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20sp"
+        android:layout_marginRight="30sp"
+        android:layout_marginLeft="30sp"
+        android:background="#FFFFFF"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayoutProfile1">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Correo"
+            android:textSize="12dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10sp"
+            android:textColor="@color/colorPrimaryDark"/>
+
+        <TextView
+            android:id="@+id/textEmailProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#949494"
+            android:layout_marginTop="30sp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="15dp"/>
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/relativeLayoutProfile3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20sp"
+        android:layout_marginRight="30sp"
+        android:layout_marginLeft="30sp"
+        android:background="#FFFFFF"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayoutProfile2">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cambiar contraseña"
+            android:textSize="12dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10sp"
+            android:textColor="@color/colorPrimaryDark"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="#792A2A2C"
+            android:theme="@style/TextLabel"
+            android:layout_marginTop="30dp"
+            app:passwordToggleEnabled="true">
+
+            <EditText
+                android:id="@+id/textPassCurrent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:hint="Contraseña actual"
+                android:inputType="textPassword"
+                android:textSize="15dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="#792A2A2C"
+            android:theme="@style/TextLabel"
+            android:layout_marginTop="90dp"
+            app:passwordToggleEnabled="true">
+
+            <EditText
+                android:id="@+id/textNewPass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:hint="Contraseña actual"
+                android:inputType="textPassword"
+                android:textSize="15dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="#792A2A2C"
+            android:theme="@style/TextLabel"
+            android:layout_marginTop="150dp"
+            app:passwordToggleEnabled="true">
+
+            <EditText
+                android:id="@+id/textRepNewPass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:hint="Contraseña actual"
+                android:inputType="textPassword"
+                android:textSize="15dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="230dp"
+            android:layout_marginBottom="25sp"
+            android:text="Cambiar contraseña"
+            android:textSize="12dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:background="@drawable/btn_blue_dark"
+            android:textColor="@android:color/white"
+            android:onClick="onClickPass"/>
+
+        <TextView
+            android:id="@+id/textResponseProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="280dp"
+            android:layout_marginBottom="5dp"
+            android:textAlignment="center"
+            android:visibility="gone"/>
+
+    </RelativeLayout>
+
+    <ProgressBar
+        style="?android:attr/progressBarStyle"
+        android:id="@+id/progressBarProfile"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:indeterminateTint="@color/colorPrimaryDark"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

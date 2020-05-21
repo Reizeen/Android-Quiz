@@ -71,4 +71,13 @@ public class Main extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), Roulette.class);
         startActivity(intent);
     }
+
+    /**
+     * Evento onclick para ver el perfil de usuario
+     * @param view
+     */
+    public void viewProfile(View view) {
+        Intent intent = new Intent(getApplicationContext(), Profile.class);
+        startActivity(intent);
+    }
 }

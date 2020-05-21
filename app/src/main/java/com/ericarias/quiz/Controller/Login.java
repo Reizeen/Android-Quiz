@@ -23,6 +23,8 @@ import com.ericarias.quiz.Model.Utilities;
 import com.ericarias.quiz.R;
 import com.google.android.material.textfield.TextInputLayout;
 
+import net.yslibrary.android.keyboardvisibilityevent.util.UIUtil;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 
@@ -30,14 +32,17 @@ public class Login extends AppCompatActivity {
 
     private ImageView fondoLogin;
     private ImageView fondoLoginDos;
-    private TextView titleLogin;
+
     private EditText textUser;
     private TextInputLayout textUserLayout;
     private EditText textPass;
     private TextInputLayout textPassLayout;
+
+    private TextView titleLogin;
     private TextView passReco;
     private TextView textLogin;
     private TextView textError;
+
     private Button btnLogin;
     private Button btnGoRegister;
     private View mProgressView;
@@ -152,7 +157,7 @@ public class Login extends AppCompatActivity {
 
 
     /**
-     * Guardar id y token en SharedPreferences
+     * Guarda id y token en SharedPreferences
      * @param id
      * @param token
      */
@@ -179,7 +184,7 @@ public class Login extends AppCompatActivity {
      * @param view
      */
     public void onClickLogin(View view){
-        Utilities.hideKeyboard(getApplicationContext(), this.getCurrentFocus());
+        UIUtil.hideKeyboard(this);
         peticionLogin();
     }
 

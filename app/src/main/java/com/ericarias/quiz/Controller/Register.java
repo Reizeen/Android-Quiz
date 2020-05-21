@@ -21,6 +21,8 @@ import com.ericarias.quiz.Model.Utilities;
 import com.ericarias.quiz.R;
 import com.google.android.material.textfield.TextInputLayout;
 
+import net.yslibrary.android.keyboardvisibilityevent.util.UIUtil;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 
@@ -160,7 +162,7 @@ public class Register extends AppCompatActivity {
      * @param view
      */
     public void onClickRegister(View view){
-        Utilities.hideKeyboard(getApplicationContext(), this.getCurrentFocus());
+        UIUtil.hideKeyboard(this);
         if (textUser.getText().toString().isEmpty() || textPass.getText().toString().isEmpty() || textEmail.getText().toString().isEmpty())
             errorAuth(true, "Tienes campos vacios");
         else
