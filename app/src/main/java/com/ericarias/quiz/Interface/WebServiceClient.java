@@ -72,4 +72,7 @@ public interface WebServiceClient {
                                  @Field("pass") String pass,
                                  @Field("new_pass") String new_pass);
 
+    @POST("email")
+    Call<ResponseServer> sendEmail(@Body User user);
+
 }

@@ -19,6 +19,14 @@ public class User {
     }
 
     /**
+     * Constructor para recuperar contraseña
+     * @param email
+     */
+    public User(String email) {
+        this.email = email;
+    }
+
+    /**
      * Constructor para el login
      * @param name
      * @param pass

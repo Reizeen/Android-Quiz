@@ -84,15 +84,12 @@ public class Register extends AppCompatActivity {
         animator.setDuration(10000);
 
         // Actualiza posiciones cada vez que cambie los valores del animator
-        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                final float progress = (float) animation.getAnimatedValue();
-                final float width = fondoRegister.getWidth();
-                final float translationX = width * progress;
-                fondoRegister.setTranslationX(translationX);
-                fondoRegisterDos.setTranslationX(translationX - width);
-            }
+        animator.addUpdateListener(animation -> {
+            final float progress = (float) animation.getAnimatedValue();
+            final float width = fondoRegister.getWidth();
+            final float translationX = width * progress;
+            fondoRegister.setTranslationX(translationX);
+            fondoRegisterDos.setTranslationX(translationX - width);
         });
 
         animator.start();

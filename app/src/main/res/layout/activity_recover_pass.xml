@@ -6,11 +6,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#81e6f8"
-    tools:context=".Controller.Login">
-
+    tools:context=".Controller.RecoverPass">
 
     <ImageView
-        android:id="@+id/fondoLogin"
+        android:id="@+id/fondoRecoverPass"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:src="@drawable/img_fondo_login"
@@ -20,7 +19,7 @@
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <ImageView
-        android:id="@+id/fondoLoginDos"
+        android:id="@+id/fondoRecoverPassDos"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:src="@drawable/img_fondo_login"
@@ -42,7 +41,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/titleLogin"
+        android:id="@+id/titleRecoverPass"
         android:layout_width="match_parent"
         android:layout_height="140dp"
         android:layout_marginTop="70dp"
@@ -57,23 +56,23 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textUserLoginLayout"
+        android:id="@+id/textEmailRecoverLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColorHint="#757575"
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleLogin" >
+        app:layout_constraintTop_toBottomOf="@+id/titleRecoverPass" >
 
         <EditText
-            android:id="@+id/textUserLogin"
+            android:id="@+id/editTextEmailRecover"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
             android:backgroundTint="@android:color/white"
-            android:hint="Usuario"
+            android:hint="Email"
             android:inputType="text"
             android:textColor="@android:color/white"
             android:layout_marginTop="30dp"
@@ -81,51 +80,8 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textPassLoginLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColorHint="#757575"
-        android:layout_marginTop="20dp"
-        app:passwordToggleEnabled="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textUserLoginLayout" >
-
-        <EditText
-            android:id="@+id/textPassLogin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
-            android:backgroundTint="@android:color/white"
-            android:hint="Contraseña"
-            android:inputType="textPassword"
-            android:textColor="@android:color/white"
-            android:textSize="25dp" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-
     <TextView
-        android:id="@+id/passReco"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="60dp"
-        android:layout_marginRight="170dp"
-        android:layout_marginTop="8dp"
-        android:text="¿Olvidaste tu contraseña?"
-        android:textColor="@android:color/white"
-        android:onClick="onClickRecoverPass"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.141"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textPassLoginLayout" />
-
-
-    <TextView
-        android:id="@+id/textErrorLogin"
+        android:id="@+id/textInfoRecover"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
@@ -133,71 +89,70 @@
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:paddingBottom="1dp"
-        android:text="Usuario y contraseña no coinciden"
+        android:text="Error al enviar Email"
         android:textColor="@color/colorAccent"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passReco" />
-
+        app:layout_constraintTop_toBottomOf="@+id/textEmailRecoverLayout" />
 
     <Button
-        android:id="@+id/btnLogin"
+        android:id="@+id/btnSend"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:text="Confirmar"
+        android:text="Enviar Email"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
         android:background="@drawable/btn_blue_dark"
         android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="@+id/fondoLogin"
-        app:layout_constraintTop_toBottomOf="@+id/passReco"
-        android:onClick="onClickLogin"/>
+        app:layout_constraintStart_toStartOf="@+id/fondoRecoverPass"
+        app:layout_constraintTop_toBottomOf="@+id/textEmailRecoverLayout"
+        android:onClick="onClickSendEmail"/>
 
     <Button
-        android:id="@+id/btnGoRegister"
+        android:id="@+id/btnReturn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:background="@drawable/btn_blue"
-        android:text="Registrarse"
+        android:text="Volver"
         android:textColor="@android:color/white"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnLogin"
-        android:onClick="onClickGoRegister"/>
+        app:layout_constraintTop_toBottomOf="@+id/btnSend"
+        android:onClick="onClickReturn"/>
 
     <ProgressBar
-        android:id="@+id/login_progress"
+        android:id="@+id/recover_progress"
         style="?android:attr/progressBarStyle"
         android:layout_width="match_parent"
         android:layout_height="65dp"
         android:layout_marginBottom="100dp"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/fondoLogin"
+        app:layout_constraintBottom_toBottomOf="@+id/fondoRecoverPass"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="@+id/fondoLogin"
-        app:layout_constraintTop_toTopOf="@+id/fondoLogin" />
+        app:layout_constraintStart_toStartOf="@+id/fondoRecoverPass"
+        app:layout_constraintTop_toTopOf="@+id/fondoRecoverPass" />
 
     <TextView
-        android:id="@+id/textLogin"
+        android:id="@+id/textSendEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Iniciando Sesión"
+        android:text="Enviando email"
         android:textSize="20dp"
         android:visibility="gone"
         android:textColor="@color/colorAccent"
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/fondoLogin"
-        app:layout_constraintTop_toBottomOf="@+id/login_progress" />
+        app:layout_constraintStart_toStartOf="@+id/fondoRecoverPass"
+        app:layout_constraintTop_toBottomOf="@+id/recover_progress" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

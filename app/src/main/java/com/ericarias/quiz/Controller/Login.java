@@ -88,15 +88,12 @@ public class Login extends AppCompatActivity {
         animator.setDuration(10000);
 
         // Actualiza posiciones cada vez que cambie los valores del animator
-        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                final float progress = (float) animation.getAnimatedValue();
-                final float width = fondoLogin.getWidth();
-                final float translationX = width * progress;
-                fondoLogin.setTranslationX(translationX);
-                fondoLoginDos.setTranslationX(translationX - width);
-            }
+        animator.addUpdateListener(animation -> {
+            final float progress = (float) animation.getAnimatedValue();
+            final float width = fondoLogin.getWidth();
+            final float translationX = width * progress;
+            fondoLogin.setTranslationX(translationX);
+            fondoLoginDos.setTranslationX(translationX - width);
         });
 
         animator.start();
@@ -190,6 +187,16 @@ public class Login extends AppCompatActivity {
 
 
     /**
+     * Evento onClick recuperar contraseña
+     * @param view
+     */
+    public void onClickRecoverPass(View view) {
+        Intent intent = new Intent(getApplicationContext(), RecoverPass.class);
+        startActivity(intent);
+    }
+
+
+    /**
      * Evento onClick del btnGoRegister.
      * @param view
      */
@@ -199,6 +206,12 @@ public class Login extends AppCompatActivity {
         errorAuth(false);
     }
 
+    /**
+     * Aplica cuando se registre un usuario
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == Utilities.COD_REGISTER && resultCode == RESULT_OK) {
@@ -206,4 +219,5 @@ public class Login extends AppCompatActivity {
                 Toast.makeText(this, data.getStringExtra("desc"), Toast.LENGTH_SHORT).show();
         }
     }
+
 }
