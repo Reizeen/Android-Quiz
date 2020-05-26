@@ -53,7 +53,7 @@ public class ViewQuestions extends AppCompatActivity {
     }
 
     /**
-     * Mostrar progress bar y ocultar el contenido de activity_view_questions
+     * Mostrar progress bar y ocultar el contenido de la actividad
      */
     private void showProgress(boolean show) {
         int gone = show ? View.GONE : View.VISIBLE;
@@ -109,7 +109,7 @@ public class ViewQuestions extends AppCompatActivity {
     }
 
     /**
-     * Evento onClick para abrir la actividad para
+     * Evento onClick para abrir una nueva actividad y
      * modificar una pregunta especifica
      * @param position
      */

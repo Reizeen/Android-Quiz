@@ -8,6 +8,11 @@ public class ResponseServer {
     private boolean resp;
     private String desc;
 
+    /**
+     * Constructor general
+     * @param resp
+     * @param desc
+     */
     public ResponseServer(boolean resp, String desc) {
         this.resp = resp;
         this.desc = desc;

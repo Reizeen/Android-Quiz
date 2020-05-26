@@ -18,16 +18,6 @@ public class Points {
         this.name = name;
     }
 
-    /**
-     * Constructor para añadir puntos
-     * @param id
-     * @param points
-     */
-    public Points(int id, int points) {
-        this.id = id;
-        this.points = points;
-    }
-
     public int getId() {
         return id;
     }

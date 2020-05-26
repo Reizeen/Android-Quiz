@@ -141,7 +141,7 @@ public class RecoverPass extends AppCompatActivity {
     }
 
     /**
-     * Evento onClick para enviar Email
+     * Evento onClick para llamar al metodo sendEmail()
      * y comprobar campo vacio
      * @param view
      */
@@ -155,7 +155,7 @@ public class RecoverPass extends AppCompatActivity {
     }
 
     /**
-     * Volver a la actividad anterior
+     * Cerrar actividad
      * @param view
      */
     public void onClickReturn(View view) {

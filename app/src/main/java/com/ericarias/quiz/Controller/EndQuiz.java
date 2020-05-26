@@ -35,7 +35,7 @@ public class EndQuiz extends AppCompatActivity implements ReportDialog.DialogLis
     private AdapterResultQuestion adapterResultQuestion;
     private RecyclerView recyclerView;
     private TextView textPoints;
-    private int points;
+    private int countCorrect;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +47,7 @@ public class EndQuiz extends AppCompatActivity implements ReportDialog.DialogLis
         responseResult = getIntent().getStringArrayListExtra("responseResult");
 
         textPoints = findViewById(R.id.textPoints);
-        points = countPoints();
+        countCorrect = countAnswers();
 
 
         adapterResultQuestion = new AdapterResultQuestion(questions, correctAnswers, responseResult);
@@ -56,36 +56,46 @@ public class EndQuiz extends AppCompatActivity implements ReportDialog.DialogLis
         recyclerView.setAdapter(adapterResultQuestion);
         adapterResultQuestion.setOnItemClickListener(position -> onClickReport(position));
 
-        if (points != 0)
+        if (countCorrect != 0)
             setPoints();
     }
 
+    /**
+     * Evento onClick para Reportar pregunta
+     * @param position
+     */
     private void onClickReport(int position){
         Question question = questions.get(position);
         ReportDialog reportDialog = new ReportDialog(question.getId());
         reportDialog.show(getSupportFragmentManager(), "Reportar");
     }
 
-    private int countPoints(){
-        int points = 0;
+    /**
+     * Contar cuantas preguntas ha acertado el usuario
+     * @return
+     */
+    private int countAnswers(){
+        int count = 0;
         for (int x = 0; x < correctAnswers.size(); x++){
             if (correctAnswers.get(x) == 1)
-                points += 10;
+                count++;
         }
-        if (points == 50) { points += 50; }
-        return points;
+        return count;
     }
 
+    /**
+     * Llamada PUT para aumentar los puntos
+     */
     private void setPoints(){
         WebServiceClient client = Utilities.myRetrofit().create(WebServiceClient.class);
-        client.addPoints(Utilities.getToken(this), new Points(Utilities.getUserID(this), points)).enqueue(new Callback<ResponseServer>() {
+        client.addPoints(Utilities.getToken(this), Utilities.getUserID(this), countCorrect).enqueue(new Callback<ResponseServer>() {
             @Override
             public void onResponse(Call<ResponseServer> call, Response<ResponseServer> response) {
                 if (!response.isSuccessful()){
                     Toast.makeText(EndQuiz.this, "ERROR: " + response.code(), Toast.LENGTH_LONG).show();
                     return;
                 }
-                textPoints.setText("PUNTOS GANADOS: " + points);
+                textPoints.setText("PUNTOS GANADOS: " + response.body().getResp());
             }
 
             @Override
@@ -96,6 +106,11 @@ public class EndQuiz extends AppCompatActivity implements ReportDialog.DialogLis
     }
 
 
+    /**
+     * Llamada POST para enviar reporte
+     * @param textReporting
+     * @param idQuestion
+     */
     @Override
     public void setReport(String textReporting, int idQuestion) {
         WebServiceClient client = Utilities.myRetrofit().create(WebServiceClient.class);
@@ -116,6 +131,10 @@ public class EndQuiz extends AppCompatActivity implements ReportDialog.DialogLis
         });
     }
 
+    /**
+     * Evento onClick para salir de la actividad
+     * @param view
+     */
     public void finishQuiz(View view) {
         finish();
     }

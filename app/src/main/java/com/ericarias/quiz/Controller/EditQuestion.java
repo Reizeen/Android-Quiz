@@ -114,7 +114,7 @@ public class EditQuestion extends AppCompatActivity {
 
 
     /**
-     * Evento onClick para llamar al metodo editQuestion
+     * Evento onClick para llamar al metodo editQuestion()
      * controlando que los campos no esten vacios
      * @param view
      */

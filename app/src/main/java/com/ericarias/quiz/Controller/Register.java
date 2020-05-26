@@ -96,7 +96,7 @@ public class Register extends AppCompatActivity {
     }
 
     /**
-     * Mostrar progress bar y ocultar el formulario de activity_login
+     * Mostrar progress bar y ocultar el formulario de la actividad
      */
     private void showProgress(boolean show) {
         int gone = show ? View.GONE : View.VISIBLE;
@@ -118,7 +118,7 @@ public class Register extends AppCompatActivity {
 
 
     /**
-     * Llamada POST /si con Retrofit
+     * Llamada POST para registrar al usuario
      */
     public void peticionRegister(){
         showProgress(true);
@@ -167,7 +167,7 @@ public class Register extends AppCompatActivity {
     }
 
     /**
-     * Mostrar error de registro por parte del usuario
+     * Mostrar error de registro si es verdadero
      */
     private void errorAuth(boolean show, String mensajeError) {
         textError.setVisibility(show ? View.VISIBLE : View.GONE);
@@ -175,7 +175,7 @@ public class Register extends AppCompatActivity {
     }
 
     /**
-     * Click Login
+     * Evento onClick para cerrar la actividad
      * @param view
      */
     public void onClickGoLogin(View view){

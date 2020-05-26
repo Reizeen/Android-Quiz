@@ -66,7 +66,7 @@ public class Roulette extends AppCompatActivity implements Animation.AnimationLi
     public void onAnimationStart(Animation animation) { }
 
     /**
-     * Metodo aplicable al terminar la animacion
+     * Metodo que aplica al terminar la animacion
      * @param animation
      */
     @Override

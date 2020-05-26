@@ -95,7 +95,8 @@ public class AddQuestion extends AppCompatActivity {
     }
 
     /**
-     * Evento onClick del btnAddQuestion
+     * Evento onClick para llamar al metodo insertQuestion()
+     * controlando que los campos no esten vacios
      * @param view
      */
     public void onClickAddQuestion(View view) {

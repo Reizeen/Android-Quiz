@@ -80,8 +80,8 @@ public class Quiz extends AppCompatActivity {
 
 
     /**
-     * Temporizador
-     * "En contruccion"
+     * Utilizacion de un Hilo independiente
+     * para el temporizador del quiz
      */
     public void progressBarStart() {
         progressStatus = 0;
@@ -155,7 +155,7 @@ public class Quiz extends AppCompatActivity {
     }
 
     /**
-     * Carga la pregunta y las opciones del juego
+     * Carga la pregunta y las opciones del juego.
      * Crea una nueva lista para establecer las opciones
      * de manera aleatoria.
      */
@@ -175,7 +175,7 @@ public class Quiz extends AppCompatActivity {
 
 
     /**
-     * Eventos onClick para cada una de las opciones
+     * Eventos onClick para cada una de las respuestas
      */
     public void onClickOptions(){
         optionOne.setOnClickListener(v -> checkAnswer(optionOne.getText().toString()));
@@ -197,8 +197,7 @@ public class Quiz extends AppCompatActivity {
     /**
      * Almacena la opcion elegida por el usuario.
      * Comprueba la opcion marcada con la respuesta correcta.
-     * La respuesta correcta está en la posicion 0
-     * del array 'questions'.
+     * La respuesta correcta está en la posicion 0 del array 'questions'.
      * @param answer
      */
     public void checkAnswer(String answer){
@@ -222,8 +221,7 @@ public class Quiz extends AppCompatActivity {
     }
 
     /**
-     * Evento onClick de avanzar a la siguiente pegunta
-     * o terminar el juego.
+     * Evento onClick de avanzar a la siguiente pegunta o terminar el juego.
      * @param view
      */
     public void nextQuestion(View view){

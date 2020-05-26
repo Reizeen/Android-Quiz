@@ -152,6 +152,14 @@ public class Login extends AppCompatActivity {
         });
     }
 
+    /**
+     * Evento onClick para llamar al metodo peticionLogin()
+     * @param view
+     */
+    public void onClickLogin(View view){
+        UIUtil.hideKeyboard(this);
+        peticionLogin();
+    }
 
     /**
      * Guarda id y token en SharedPreferences
@@ -177,16 +185,6 @@ public class Login extends AppCompatActivity {
 
 
     /**
-     * Evento onClick del btn confirmar.
-     * @param view
-     */
-    public void onClickLogin(View view){
-        UIUtil.hideKeyboard(this);
-        peticionLogin();
-    }
-
-
-    /**
      * Evento onClick recuperar contraseña
      * @param view
      */
@@ -197,7 +195,7 @@ public class Login extends AppCompatActivity {
 
 
     /**
-     * Evento onClick del btnGoRegister.
+     * Evento onClick para abrir la actividad Register.
      * @param view
      */
     public void onClickGoRegister(View view){

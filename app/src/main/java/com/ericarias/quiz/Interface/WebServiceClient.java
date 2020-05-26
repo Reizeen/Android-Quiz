@@ -54,9 +54,11 @@ public interface WebServiceClient {
     Call<List<Question>> gameQuestions(@Header("token") String token,
                                        @Path("idTheme") String idTheme);
 
+    @FormUrlEncoded
     @PUT("points")
     Call<ResponseServer> addPoints(@Header("token") String token,
-                                   @Body Points points);
+                                   @Field("id") int idUser,
+                                   @Field("answers") int correctAnswers);
 
     @POST("report")
     Call<ResponseServer> addReport(@Header("token") String token,
@@ -65,6 +67,7 @@ public interface WebServiceClient {
     @GET("user/{id}")
     Call<User>getUser(@Header("token") String token,
                       @Path("id") int idUser);
+
     @FormUrlEncoded
     @PUT("user")
     Call<ResponseServer> modPass(@Header("token") String token,

@@ -61,7 +61,7 @@ public class Profile extends AppCompatActivity {
     }
 
     /**
-     * Mostrar progress bar y ocultar el contenido de activity_view_questions
+     * Mostrar progress bar y ocultar el contenido de la actividad
      */
     private void showProgress(boolean show) {
         int gone = show ? View.GONE : View.VISIBLE;
@@ -74,6 +74,9 @@ public class Profile extends AppCompatActivity {
         textResponse.setVisibility(gone);
     }
 
+    /**
+     * Llamada GET para obtener la informacion del usuario
+     */
     private void getUser() {
         showProgress(true);
         WebServiceClient client = Utilities.myRetrofit().create(WebServiceClient.class);
@@ -96,6 +99,9 @@ public class Profile extends AppCompatActivity {
         });
     }
 
+    /**
+     * Llamada POST para modificar la contraseña
+     */
     private void modPass(){
         showProgress(true);
         WebServiceClient client = Utilities.myRetrofit().create(WebServiceClient.class);
@@ -125,6 +131,11 @@ public class Profile extends AppCompatActivity {
         });
     }
 
+    /**
+     * Evento onClick para llamar al metodo modPass()
+     * controlando que no haya campos vacios
+     * @param view
+     */
     public void onClickPass(View view) {
         UIUtil.hideKeyboard(this);
 
