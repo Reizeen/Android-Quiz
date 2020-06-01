@@ -124,7 +124,6 @@ public class Roulette extends AppCompatActivity implements Animation.AnimationLi
                 }
 
                 ArrayList<Question> questions = new ArrayList<>(response.body());
-                Toast.makeText(Roulette.this, questions.get(0).getTheme(), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), Quiz.class);
                 intent.putExtra("questions", questions);
                 startActivity(intent);

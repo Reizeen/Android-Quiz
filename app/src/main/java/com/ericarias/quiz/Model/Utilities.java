@@ -23,9 +23,12 @@ public class Utilities {
      * Codigos de respuesta
      */
     public static final int COD_REGISTER = 101;
-    public static final int COD_ADD_QUESTION = 102;
     public static final int COD_EDIT_QUESTION = 103;
 
+    /**
+     * Metodo para la obtencion de Retrofit
+     * @return
+     */
     public static Retrofit myRetrofit(){
         // Permite ver los datos que se envian y se reciben
         logInterceptor = new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -40,16 +43,31 @@ public class Utilities {
         return retrofit;
     }
 
+    /**
+     * Obtiene el identificador del usuario
+     * @param context
+     * @return
+     */
     public static int getUserID(Context context) {
         SharedPreferences preferences = context.getSharedPreferences("credenciales", Context.MODE_PRIVATE);
         return preferences.getInt("id", 0);
     }
 
+    /**
+     * Obtiene el token del usuario
+     * @param context
+     * @return
+     */
     public static String getToken(Context context) {
         SharedPreferences preferences = context.getSharedPreferences("credenciales", Context.MODE_PRIVATE);
         return preferences.getString("token", "null");
     }
 
+    /**
+     * Obtiene el nombre del usuario.
+     * @param context
+     * @return
+     */
     public static String getUsername(Context context) {
         SharedPreferences preferences = context.getSharedPreferences("credenciales", Context.MODE_PRIVATE);
         return preferences.getString("name", "null");

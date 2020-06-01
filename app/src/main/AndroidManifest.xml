@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.ericarias.quiz">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -11,19 +13,44 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".Controller.RecoverPass"></activity>
-        <activity android:name=".Controller.Profile" />
-        <activity android:name=".Controller.EndQuiz" />
-        <activity android:name=".Controller.Quiz" />
-        <activity android:name=".Controller.Roulette" />
-        <activity android:name=".Controller.EditQuestion" />
-        <activity android:name=".Controller.ViewQuestions" />
-        <activity android:name=".Controller.Ranking" />
-        <activity android:name=".Controller.AddQuestion" />
-        <activity android:name=".Controller.Login" />
-        <activity android:name=".Controller.Main" />
-        <activity android:name=".Controller.Register" />
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity
+            android:name=".Controller.RecoverPass"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Controller.Profile"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Controller.EndQuiz"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Controller.Quiz"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Controller.Roulette"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Controller.EditQuestion"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Controller.ViewQuestions"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Controller.Ranking"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Controller.AddQuestion"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Controller.Login"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Controller.Main"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Controller.Register"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Controller.Start"
             android:screenOrientation="portrait">
@@ -34,5 +61,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>
