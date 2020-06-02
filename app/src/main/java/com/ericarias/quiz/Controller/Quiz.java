@@ -195,6 +195,17 @@ public class Quiz extends AppCompatActivity {
     }
 
     /**
+     * Bloquea los onClick de los buttons de respuestas
+     * @param click
+     */
+    private void clickButtons(boolean click){
+        optionOne.setClickable(click);
+        optionTwo.setClickable(click);
+        optionThree.setClickable(click);
+        optionFour.setClickable(click);
+    }
+
+    /**
      * Almacena la opcion elegida por el usuario.
      * Comprueba la opcion marcada con la respuesta correcta.
      * La respuesta correcta está en la posicion 0 del array 'questions'.
@@ -206,15 +217,16 @@ public class Quiz extends AppCompatActivity {
         if (answer.equals(questions.get(position).getAnswers().get(0))){
             resultQuestion.setText("CORRECTO");
             resultQuestion.setTextColor(Color.GREEN);
-            showResult(true);
             correctAnswers.add(1);
 
         } else {
             resultQuestion.setText("INCORRECTO");
             resultQuestion.setTextColor(Color.RED);
-            showResult(true);
             correctAnswers.add(0);
         }
+
+        showResult(true);
+        clickButtons(false);
 
         // Detener el hilo del temporizador
         progressStatus = MAX_SECONDS;
@@ -236,6 +248,7 @@ public class Quiz extends AppCompatActivity {
             position++;
             loadQuestion();
             showResult(false);
+            clickButtons(true);
             progressBarStart();
         }
     }

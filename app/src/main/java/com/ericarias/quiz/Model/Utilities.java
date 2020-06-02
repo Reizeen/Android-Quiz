@@ -26,7 +26,7 @@ public class Utilities {
     public static final int COD_EDIT_QUESTION = 103;
 
     /**
-     * Metodo para la obtencion de Retrofit
+     * Metodo para la obtencion 2de Retrofit
      * @return
      */
     public static Retrofit myRetrofit(){

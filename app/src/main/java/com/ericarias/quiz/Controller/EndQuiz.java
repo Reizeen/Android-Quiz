@@ -95,7 +95,8 @@ public class EndQuiz extends AppCompatActivity implements ReportDialog.DialogLis
                     Toast.makeText(EndQuiz.this, "ERROR: " + response.code(), Toast.LENGTH_LONG).show();
                     return;
                 }
-                textPoints.setText("PUNTOS GANADOS: " + response.body().getResp());
+                textPoints.setText("PUNTOS GANADOS: " + response.body().getDesc());
+                Log.e(null, "onResponse: " + response.body().getResp() );
             }
 
             @Override
