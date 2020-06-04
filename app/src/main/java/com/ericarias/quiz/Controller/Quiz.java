@@ -93,10 +93,8 @@ public class Quiz extends AppCompatActivity {
                     textTime.setText(String.valueOf(MAX_SECONDS - progressStatus));
 
                     if (progressStatus == MAX_SECONDS){
+                        checkAnswer("No contestada");
                         resultQuestion.setText("TIEMPO");
-                        resultQuestion.setTextColor(Color.RED);
-                        showResult(true);
-                        correctAnswers.add(0);
                     }
                 });
 
