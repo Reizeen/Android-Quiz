@@ -19,6 +19,7 @@
         android:lines="4"
         android:maxLines="10"
         android:padding="10dp"
+        android:textCursorDrawable="@color/colorPrimaryDark"
         android:textColor="@color/colorPrimaryDark"
         android:hint="Motivo de reporte" />
 

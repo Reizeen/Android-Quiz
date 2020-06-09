@@ -132,7 +132,7 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
                 android:backgroundTint="@color/colorPrimaryDark"
-                android:hint="Contraseña actual"
+                android:hint="Contraseña nueva"
                 android:inputType="textPassword"
                 android:textSize="15dp" />
 
@@ -153,7 +153,7 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
                 android:backgroundTint="@color/colorPrimaryDark"
-                android:hint="Contraseña actual"
+                android:hint="Repetir contraseña nueva"
                 android:inputType="textPassword"
                 android:textSize="15dp" />
 
